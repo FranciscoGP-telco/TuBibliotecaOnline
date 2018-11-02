@@ -9,25 +9,32 @@
 </head>
 <body>
   <main>
-	<div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" id="leftMenu">
-		<button class="w3-bar-item w3-button w3-large w3-hide-large" id="closeButton">&#9776;</button>
-		<a href="#" class="w3-bar-item w3-button">Link 1</a>
-		<a href="#" class="w3-bar-item w3-button">Link 2</a>
-		<a href="#" class="w3-bar-item w3-button">Link 3</a>
-	</div>
-	<div class="w3-container w3-light-blue">
-		<h1>Pruebas de diseño</h1>
-	</div>
-	
-<div class="w3-main">
+<!-- Sidebar -->
+<div class="w3-sidebar w3-bar-block w3-border-right w3-animate-left" id="mySidebar">
+  <button class="w3-bar-item w3-large" id="closeButton">☰</button>
+  <a href="#" class="w3-bar-item w3-button">Link 1</a>
+  <a href="#" class="w3-bar-item w3-button">Link 2</a>
+  <a href="#" class="w3-bar-item w3-button">Link 3</a>
+</div>
+
+<!-- Page Content -->
 <div class="w3-teal">
-  <button class="w3-button w3-teal w3-xlarge w3-hide-large" id="menuButton">&#9776;</button><!--¿Lo cambio por imagen?-->
+  <button class="w3-button w3-teal w3-xlarge" id="menuButton">☰</button>
   <div class="w3-container">
+    <h1>My Page</h1>
   </div>
 </div>
 
-<div class="w3-container">
-</div>
+<script>
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+}
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+</script>
+     
+
 	<div class="w3-container w3-light-blue">
 		<h5>Píe de página</h5>
 	</div>

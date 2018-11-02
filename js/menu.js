@@ -1,9 +1,11 @@
 window.onload = function() {
-  document.getElementById("menuButton").addEventListener("click", function(){
-    document.getElementById("leftMenu").style.display = "block";
+  document.getElementById("closeButton").addEventListener("click", function(){
+    document.getElementById("mySidebar").style.display = "none";
+    console.log("Cierro");
   });
 
-  document.getElementById("closeButton").addEventListener("click", function(){
-    document.getElementById("leftMenu").style.display = "none";
+  document.getElementById("menuButton").addEventListener("click", function(){
+    document.getElementById("mySidebar").style.display = "block";
+    console.log("Abro");
   });
 };
