@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>DWEC06_formulario</title>
+	<title>tuBibliotecaOnline, todos tus libros organizados</title>
 	<meta charset="UTF-8">
 	<meta name="author" content="García Pozo, Francisco">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
