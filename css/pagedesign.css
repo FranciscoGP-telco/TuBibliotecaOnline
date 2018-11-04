@@ -1,8 +1,9 @@
 #header-size {
-  min-height: 39px;
+  min-height: 43px;
 }
 body {
   font-family: "Abel";
+  font-size: 18px;
 }
 h1{
   font-family: "Abel";
