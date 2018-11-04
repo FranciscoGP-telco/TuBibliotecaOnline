@@ -1,3 +1,36 @@
 #header-size {
   min-height: 39px;
 }
+
+.tbo-dark {
+  background-color: #373331;
+  color:#fff;
+}
+.tbo-grey {
+  background-color: #605a56;
+  color:#fff;
+}
+.tbo-mint {
+  background-color: #80ac7b;
+  color:#000;
+}
+.tbo-cream {
+  background-color: #e8eaa1;
+  color:#000;
+}
+.tbo-hover-dark:hover {
+  background-color:#373331!important;
+  color:#fff!important;
+}
+.tbo-hover-grey:hover {
+  background-color:#605a56!important;
+  color:#fff!important;
+}
+.tbo-hover-mint:hover {
+  background-color:#80ac7b!important;
+  color:#000!important;
+}
+.tbo-hover-cream:hover {
+  background-color:#e8eaa1!important;
+  color:#000!important;
+}
