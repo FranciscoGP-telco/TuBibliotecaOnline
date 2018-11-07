@@ -5,11 +5,18 @@ body {
   font-family: "Abel";
   font-size: 18px;
 }
-h1{
+.titles {
   font-family: "Abel";
   font-size: 34px;
   text-align: center;
 }
+
+.footer{
+  font-size: 13px;
+  margin-bottom: 13px;
+  color: #000;
+}
+
 .tbo-dark {
   background-color: #373331;
   color:#fff;
@@ -26,6 +33,7 @@ h1{
   background-color: #e8eaa1;
   color:#000;
 }
+
 .tbo-hover-dark:hover {
   background-color:#373331!important;
   color:#fff!important;

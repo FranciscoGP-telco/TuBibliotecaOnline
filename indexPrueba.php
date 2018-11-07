@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/w3.css">	
   <link rel="stylesheet" href="css/pagedesign.css">	
-  <script charset="UTF-8" src="js/menu.js"></script>
+  <script src="js/menu.js"></script>
 </head>
 <body>
   <main>

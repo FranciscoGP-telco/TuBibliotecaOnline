@@ -1,9 +1,12 @@
-    <div class="tbo-cream">
-      <div class="w3-container">
-        <h1>Mis novedades</h1>
+      <div class="w3-container tbo-cream">
+        <h1 class="titles">Mis novedades</h1>
       </div>
-    </div>
-    <div class="tbo-cream">
       <div class="w3-container">
+        <p>Libros nuevos que han sido añadidos</p>
       </div>
-    </div>
+      <div class="w3-container tbo-cream">
+        <h1 class="titles">Mis novedades</h1>
+      </div>
+      <div class="w3-container">
+        <p>Libros nuevos que han sido añadidos</p>
+      </div>
