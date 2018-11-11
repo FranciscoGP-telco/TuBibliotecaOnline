@@ -10,13 +10,26 @@ body {
   font-size: 34px;
   text-align: center;
 }
-
 .footer{
   font-size: 13px;
   margin-bottom: 13px;
   color: #000;
 }
-
+.book{
+  margin: 40px;
+}
+#userBar{
+  width:15%;
+  right:15px;
+  height:129px
+}
+#bookCoverSmall{
+  width:200px;
+  height:300px;
+}
+#bookContainter{
+  margin: 20px;
+}
 .tbo-dark {
   background-color: #373331;
   color:#fff;
