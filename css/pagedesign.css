@@ -16,20 +16,34 @@ body {
   color: #000;
 }
 .book{
-  margin: 40px;
+  margin: auto;
+  max-width: 800px;
+  min-height: 500px;
+  margin: auto;
+  width: 50%;
+}
+.plot{
+  font-size: 15px;
+}
+.footerContainer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 #userBar{
   width:15%;
   right:15px;
   height:129px
 }
-#bookCoverSmall{
+.bookCoverSmall{
   width:200px;
   height:300px;
 }
-#bookContainter{
-  margin: 20px;
+.bookContainer{
+  margin: 15px;
 }
+
 .tbo-dark {
   background-color: #373331;
   color:#fff;
