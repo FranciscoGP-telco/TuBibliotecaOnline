@@ -1,3 +1,4 @@
+  <div id="footer-size"></div>
   <div class="tbo-cream footerContainer">
     <div class="w3-center">
       <a href="#" class="tbo-hover-grey footer" >Mapa de sitio</a> ·

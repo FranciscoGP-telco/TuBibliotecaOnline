@@ -1,5 +1,5 @@
 window.onload = function() {
-  
+  topButtons();
 
   //Start of the events attached to the page
   window.addEventListener("resize", topButtons);

@@ -1,6 +1,9 @@
 #header-size {
   min-height: 43px;
 }
+#footer-size {
+  min-height: 27px;
+}
 body {
   font-family: "Abel";
   font-size: 18px;
@@ -18,8 +21,8 @@ body {
 .book{
   margin: auto;
   max-width: 800px;
+  min-width: 300px;
   min-height: 500px;
-  margin: auto;
   width: 50%;
 }
 .plot{
