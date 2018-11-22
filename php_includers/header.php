@@ -16,7 +16,7 @@
       <div class="w3-bar tbo-dark">
         <a href="#" class="w3-bar-item w3-button w3-hover-gray" id="menuButton">☰</a><!-- function to keep the hover color? -->
         <div id ="toNarrow">
-          <a href="#" class="w3-bar-item w3-button w3-hover-gray">tuBibliotecaOnline</a>
+          <a href="index.php" class="w3-bar-item w3-button w3-hover-gray">tuBibliotecaOnline</a>
           <a href="#" class="w3-bar-item w3-button w3-hover-gray">Tu biblioteca</a>
           <a href="#" class="w3-bar-item w3-button w3-hover-gray">Libros</a>
           <a href="#" class="w3-bar-item w3-button w3-hover-gray">Autores y editoriales</a>
@@ -28,7 +28,7 @@
     <div id="header-size"></div>
     <!-- Sidebar -->
     <div class="w3-sidebar w3-bar-block w3-animate-left w3-hide tbo-mint" id="sideBar">
-     <a href="#" class="w3-bar-item w3-button tbo-hover-cream">Inicio</a>
+     <a href="index.php" class="w3-bar-item w3-button tbo-hover-cream">Inicio</a>
      <a href="#" class="w3-bar-item w3-button tbo-hover-cream">Tu biblioteca</a>
      <a href="#" class="w3-bar-item w3-button tbo-hover-cream">Libros</a>
      <a href="#" class="w3-bar-item w3-button tbo-hover-cream">Autores y editoriales</a>

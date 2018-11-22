@@ -23,6 +23,20 @@
       $row = $result->fetch(PDO::FETCH_ASSOC);
       }
     return $row;    
+    }
+
+    public static function getRecientBooks($USER) {
+      $sql = "SELECT B.ISBN AS ISBN, B.NAME AS TITLE, A.NAME AS AUTHOR, L.ADD_DATE AS ADD_DATE\n"
+      . "FROM USERS U, BOOKS B, LIBRARY L, AUTHOR A\n"
+      . "WHERE U.NICK = L.NICK AND L.ISBN = B.ISBN AND B.ID_AUTHOR = A.ID_AUTHOR AND U.NICK = '".$USER."'\n"
+      . "ORDER BY ADD_DATE ASC \n"
+      . "LIMIT 4 ";
+      $result = self::execQuery ($sql);
+      $row = null;
+      if(isset($result)){
+        $row = $result->fetchAll(PDO::FETCH_ASSOC);
+      }
+    return $row;    
     }      
   }
 ?>
