@@ -18,7 +18,17 @@ body {
   margin-bottom: 13px;
   color: #000;
 }
+.noUnder{
+  text-decoration:none;
+}
 .book{
+  margin: auto;
+  max-width: 800px;
+  min-width: 300px;
+  min-height: 500px;
+  width: 50%;
+}
+.addBook{
   margin: auto;
   max-width: 800px;
   min-width: 300px;

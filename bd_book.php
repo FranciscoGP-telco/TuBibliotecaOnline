@@ -1,6 +1,5 @@
 <?php
   require_once('php_includers/db_connection.php');
-  $result = null;
   $book = DB::getBook($_GET["ISBN"]);
 ?>
     <div class="book tbo-cream">
@@ -11,7 +10,7 @@
             <p><?php print_r($book["TITLE"]) ?></p>
             <p>ISBN: <?php print_r($book["ISBN"]) ?></p>
             <button class="w3-button w3-round tbo-mint w3-block" id="addBook">Añadir</button></br>
-            <a href="https://www.google.es/search?q=<?php print_r(str_replace(' ', '+',$book["TITLE"])) ?>"><button class="w3-button w3-round tbo-mint w3-block">Buscar en Google</button></a>
+            <a href="https://www.google.es/search?q=<?php print_r(str_replace(' ', '+',$book["TITLE"])) ?>" class="noUnder"><button class="w3-button w3-round tbo-mint w3-block">Buscar en Google</button></a>
           </div>
         </div>
         <div class="w3-half w3-container">

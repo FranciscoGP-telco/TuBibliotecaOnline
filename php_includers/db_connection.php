@@ -1,10 +1,11 @@
 <?php
   class DB {
     protected static function execQuery($sql) {
-      $connection = new PDO("mysql:host=localhost;dbname=id7548059_tubibliotecaonline", "francisco", "gp4649c2");
+      $connection = new PDO("mysql:host=localhost;dbname=id7548059_tubibliotecaonline;charset=utf8", "francisco", "gp4649c2");
       $result = null;
       try {
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
         if (isset($connection)) $result = $connection->query($sql);
       } catch (PDOException $error) {
         echo "Error de conexión a la base de datos: " . $error->getMessage();
@@ -32,11 +33,59 @@
       . "ORDER BY ADD_DATE ASC \n"
       . "LIMIT 4 ";
       $result = self::execQuery ($sql);
+      $books = null;
+      if(isset($result)){
+        $books = $result->fetchAll(PDO::FETCH_ASSOC);
+      }
+    return $books;    
+    }
+
+    public static function getPopularBooks() {
+      $sql = "SELECT COUNT(L.ISBN) AS TOTAL, L.ISBN AS ISBN, B.NAME AS TITLE\n"
+      . "FROM LIBRARY L, BOOKS B\n"
+      . "WHERE L.ISBN = B.ISBN\n"
+      . "GROUP BY ISBN\n"
+      . "ORDER BY ADD_DATE ASC \n";
+      $result = self::execQuery ($sql);
+      $books = null;
+      if(isset($result)){
+        $books = $result->fetchAll(PDO::FETCH_ASSOC);
+      }
+    return $books;    
+    }
+
+    public static function getAuthors() {
+      $sql = "SELECT ID_AUTHOR, NAME FROM `author` ORDER BY ID_AUTHOR ASC";
+      $result = self::execQuery ($sql);
+      $authors = null;
+      if(isset($result)){
+        $authors = $result->fetchAll(PDO::FETCH_ASSOC);
+      }
+    return $authors;    
+    }
+
+    public static function getPublishers() {
+      $sql = "SELECT ID_PUBLISHER, NAME FROM `publishers` ORDER BY NAME ASC";
+      $result = self::execQuery ($sql);
+      $publishers = null;
+      if(isset($result)){
+        $publishers = $result->fetchAll(PDO::FETCH_ASSOC);
+      }
+    return $publishers;
+    }
+
+    public static function validateUser($user, $pass) {
+      $sql = "SELECT PASS FROM `users` WHERE NICK LIKE '".$user."' ORDER BY NAME ASC";
+      $result = self::execQuery ($sql);
+      $userLogin = false;
       $row = null;
       if(isset($result)){
-        $row = $result->fetchAll(PDO::FETCH_ASSOC);
+        $row = $result->fetch(PDO::FETCH_ASSOC);
+        if($row["PASS"] === md5($pass)){
+          $userLogin = true;
+        }
       }
-    return $row;    
-    }      
+    return $userLogin;
+    }
   }
 ?>
