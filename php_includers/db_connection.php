@@ -5,10 +5,9 @@
       $result = null;
       try {
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         if (isset($connection)) $result = $connection->query($sql);
       } catch (PDOException $error) {
-        echo "Error de conexión a la base de datos: " . $error->getMessage();
+        echo $error->getMessage();
       }
       $connection = null; 
       return $result;
@@ -86,6 +85,16 @@
         }
       }
     return $userLogin;
+    }
+
+    public static function insertBook($ISBN, $publisher, $author, $title, $genre, $plot) {
+      $sql = "INSERT INTO `books` (`ISBN`, `ID_PUBLISHER`, `ID_AUTHOR`, `NAME`, `GENRE`, `PLOT`) VALUES ('".$ISBN."', '".$publisher."', '".$author."', '".$title."', '".$genre."', '".$plot."')";
+      $executed = false;
+      $result = self::execQuery ($sql);
+      if(isset($result)){
+        $executed = true;
+      }
+      return $executed;
     }
   }
 ?>

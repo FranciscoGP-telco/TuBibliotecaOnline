@@ -140,7 +140,7 @@ window.onload = function() {
     document.getElementById("addnewbook").addEventListener("click", function(){
       var arrayResults = [],
           totalResult = 0;
-      console.log("hola, aqui si esto");
+      console.log("hola, aqui si esto" + document.getElementById("ISBNform").value);
       arrayResults[0] = checkISBN(document.getElementById("ISBNform").value);
       arrayResults[1] = checkTitle(document.getElementById("titleform").value);
       arrayResults[2] = checkGenre(document.getElementById("genreform").value);
@@ -152,8 +152,26 @@ window.onload = function() {
       }
       if(totalResult == 4){
         console.log(totalResult);
-        document.getElementById("formaddbook").submit();
-      }
-    });  
+        console.log(document.getElementById("uploadform").value);
+          $.post("formaddbook.php",
+          {
+            ISBN: document.getElementById("ISBNform").value,
+            title: document.getElementById("titleform").value,
+            genre: document.getElementById("genreform").value,
+            plot: document.getElementById("plotform").value,
+            publisher: document.getElementById("publisherform").value,
+            author: document.getElementById("authorform").value
+          },
+          function(data, status){
+            if(data == "1" && status == "success"){
+              document.getElementById("addbookcorrect").classList.remove("w3-hide");
+              document.getElementById("addbookerror").classList.add("w3-hide");
+            } else {
+              document.getElementById("addbookcorrect").classList.add("w3-hide");
+              document.getElementById("addbookerror").classList.remove("w3-hide");
+            }
+          });
+        }
+    }); 
   }
 };
