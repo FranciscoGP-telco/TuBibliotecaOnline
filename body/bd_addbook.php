@@ -12,8 +12,7 @@
         <input class="w3-input w3-border" name="genreform" id="genreform" type="text"></p><span class="w3-tag w3-padding w3-small w3-red w3-center w3-hide" id="genreerror"></span>
         <p><label for="plotform">Argumento:</label>
         <textarea class="w3-input w3-border" name="plotform" id="plotform" rows="10" cols="30"></textarea></p><span class="w3-tag w3-padding w3-small w3-red w3-center w3-hide" id="ploterror"></span></br>
-        <p><label for="uploadform">Portada:</label>
-        <input type="file" name="uploadform" id="uploadform"></p>
+
       ');
     if(empty($authors)){
       print_r('<p>¡Aun no se ha añadido ningun autor! <a href="addauthor.php">Añadelo pulsando aquí</a></p>');

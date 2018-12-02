@@ -22,7 +22,7 @@
       if(isset($result)){
       $row = $result->fetch(PDO::FETCH_ASSOC);
       }
-    return $row;    
+    return $row;
     }
 
     public static function getRecientBooks($USER) {
@@ -36,7 +36,20 @@
       if(isset($result)){
         $books = $result->fetchAll(PDO::FETCH_ASSOC);
       }
-    return $books;    
+    return $books;
+    }
+
+    public static function getUserLibrary($USER) {
+      $sql = "SELECT L.ISBN AS ISBN, B.NAME AS TITLE, B.GENRE AS GENRE, P.NAME AS PUBLISHER  \n"
+      . "FROM LIBRARY L, BOOKS B, PUBLISHERS P \n"
+      . "WHERE L.ISBN = B.ISBN AND B.ID_PUBLISHER = P.ID_PUBLISHER AND L.NICK = '".$USER."'\n"
+      . "ORDER BY TITLE ASC";
+      $result = self::execQuery ($sql);
+      $library = null;
+      if(isset($result)){
+        $library = $result->fetchAll(PDO::FETCH_ASSOC);
+      }
+    return $library;
     }
 
     public static function getPopularBooks() {
@@ -71,6 +84,16 @@
         $publishers = $result->fetchAll(PDO::FETCH_ASSOC);
       }
     return $publishers;
+    }
+
+    public static function getBooks($title) {
+      $sql = "SELECT NAME, ISBN FROM `books` WHERE NAME LIKE '%".$title."%' ORDER BY NAME ASC";
+      $result = self::execQuery ($sql);
+      $books = null;
+      if(isset($result)){
+        $books = $result->fetchAll(PDO::FETCH_ASSOC);
+      }
+    return $books;
     }
 
     public static function validateUser($user, $pass) {

@@ -25,7 +25,7 @@
           <a href="#" class="w3-bar-item w3-button w3-hover-gray">Autores y editoriales</a>
         </div>
         <a href="#" class="w3-bar-item w3-button w3-right w3-hover-gray" id="userButton">usuario</a><!-- here we change this text for the user avatar (or the default one) -->
-        <span href="#" class="w3-bar-item w3-button w3-right w3-hover-gray fa fa-search">buscar</span><!-- here we change this text for a search button -->
+        <span href="#" class="w3-bar-item w3-button w3-right w3-hover-gray">buscar</span><!-- here we change this text for a search button -->
       </div>
     </div>
     <div id="header-size"></div>

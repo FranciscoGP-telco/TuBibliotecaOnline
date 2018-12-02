@@ -47,6 +47,37 @@ window.onload = function() {
   }//End of function sideMenu()
 
 
+  //Script only avaliable in the page books
+  if(window.location.href.indexOf("books") > 0) {
+    document.getElementById("searchBooks").addEventListener("click", function(){
+      var bookTable = document.getElementById("searchBooksTable"),
+      bookTableSize = 0;
+
+      bookTableSize = bookTable.rows.length;
+      //Deleting of the rows in the results table
+      if(bookTableSize >= 0){
+        for(i=0; i < bookTableSize; i++){
+          bookTable.deleteRow(0);
+        }
+      }
+      $.post("searchbook.php",
+      {
+        title: document.getElementById("titleSearch").value
+      },
+      function(data, status){
+        if(status == "success"){
+            var results = JSON.parse(data),
+            row = "";
+            for (var i = 0; i < results.length; i++) {
+              row = bookTable.insertRow();
+              row.insertCell(0).innerHTML = "<a class= 'normalTextCenter' href='book.php?ISBN="+results[i].ISBN+"'>"+results[i].NAME+"<a/>";
+            }
+        }
+      });
+    });
+  }
+
+  //Scripts only avaliables in the page addbook
   if(window.location.href.indexOf("addbook") > 0){
     function checkISBN(ISBN) {
       var correct = false,
@@ -140,7 +171,6 @@ window.onload = function() {
     document.getElementById("addnewbook").addEventListener("click", function(){
       var arrayResults = [],
           totalResult = 0;
-      console.log("hola, aqui si esto" + document.getElementById("ISBNform").value);
       arrayResults[0] = checkISBN(document.getElementById("ISBNform").value);
       arrayResults[1] = checkTitle(document.getElementById("titleform").value);
       arrayResults[2] = checkGenre(document.getElementById("genreform").value);
@@ -151,8 +181,6 @@ window.onload = function() {
         }
       }
       if(totalResult == 4){
-        console.log(totalResult);
-        console.log(document.getElementById("uploadform").value);
           $.post("formaddbook.php",
           {
             ISBN: document.getElementById("ISBNform").value,
@@ -163,6 +191,7 @@ window.onload = function() {
             author: document.getElementById("authorform").value
           },
           function(data, status){
+            console.log(data);
             if(data == "1" && status == "success"){
               document.getElementById("addbookcorrect").classList.remove("w3-hide");
               document.getElementById("addbookerror").classList.add("w3-hide");

@@ -6,41 +6,37 @@
     $plot = $_POST["plot"];
     $author = $_POST["author"];
     $publisher = $_POST["publisher"];
-    /*//Comprobations to upload the front
-    //First, we check the format
-    $fileType = strtolower(pathinfo($_FILES["uploadform"]["name"],PATHINFO_EXTENSION));
-      if($fileType != "jpg" && $fileType != "png") {
-        echo "Solo puedes añadir portadas en formato .jpg o .png";
-        $uploadTest = false;
-    } else {
-      $target_file = "img/" . basename($ISBN . ".png");
-      $uploadTest = true;
-      //First we check if the image have size
-      if(isset($_POST["submit"])) {
-          if(getimagesize($_FILES["uploadform"]["tmp_name"])) {
-              echo "La portada que has subido no es una imagen.";
-              $uploadTest = false;
-          }
-      }
+    $results = array();
+    $totalResults = 0;
 
-      // Then the maximum file size
-      if ($_FILES["uploadform"]["size"] > 500000) {
-          echo "No se ha añadido la portada. No puede tener un tamaño mayor a 5 megas";
-          $uploadTest = false;
-      }
-  
-      // Check if $uploadTest is false
-      if ($uploadTest == false) {
-          echo "No se ha subido la imagen.";
-      // If is true, try to upload file
-      } else {
-          if (move_uploaded_file($_FILES["uploadform"]["tmp_name"], $target_file)) {
-              echo "The file ". basename( $_FILES["uploadform"]["name"]). " has been uploaded.";
-          } else {
-              echo "Sorry, there was an error uploading your file.";
-          }
-      }
-    }*/
-    $insertBookResult = DB::insertBook($ISBN, $publisher, $author, $title, $genre, $plot);
-    echo ($insertBookResult);
+    if(strlen($ISBN) == 10 || strlen($ISBN) == 13){
+        if(is_numeric($ISBN)){
+            $results[0] = true;
+        }
+    }
+
+    if(strlen($title) >= 1){
+        $results[1] = true;
+    }
+
+    if(strlen($genre) >= 4 && strlen($genre) <= 20){
+        $results[2] = true;
+    }
+
+    if(strlen($plot) >= 10 && strlen($plot) <= 10000){
+        $results[3] = true;
+    }
+
+    for ($i = 0; $i < 4; $i++){
+        if($results[$i]){
+            $totalResults++;
+        }
+    }
+    
+    if ($totalResults == 4){
+        $insertBookResult = DB::insertBook($ISBN, $publisher, $author, $title, $genre, $plot);
+        echo ($insertBookResult);    
+    } else {
+        echo ("Los datos introducidos no son correctos.");
+    }
 ?>
