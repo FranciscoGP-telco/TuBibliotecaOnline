@@ -4,7 +4,6 @@ window.onload = function() {
   //Start of the events attached to the page
   window.addEventListener("resize", topButtons);
   document.getElementById("menuButton").addEventListener("click", sideMenu);
-  document.getElementById("userButton").addEventListener("click", userMenu);
 
 
   //Start of the functions for the page behaviour
@@ -32,20 +31,6 @@ window.onload = function() {
       sideBar.classList.remove("w3-hide");
     }
   }//End of function sideMenu()
-
-  
-  //Function to show or hide the side Menu
-  function userMenu(){
-    var userBar = document.getElementById("userBar");
-    if (userBar.classList.contains("w3-show")){
-      userBar.classList.add("w3-hide");
-      userBar.classList.remove("w3-show");
-    } else {
-      userBar.classList.add("w3-show");
-      userBar.classList.remove("w3-hide");
-    }
-  }//End of function sideMenu()
-
 
   //Script only avaliable in the page books
   if(window.location.href.indexOf("books") > 0) {
@@ -77,8 +62,200 @@ window.onload = function() {
     });
   }
 
+  //Scripts only avaliables in the page checkin
+  if(window.location.href.indexOf("checkin") > 0){
+    
+    function checkNick(nick) {
+      var correct = false;
+      nick = nick.trim();
+      nick = nick.toLowerCase();
+      if (isNaN(nick)){
+        if (nick.length >= 3 && nick.length <= 20){
+          correct = true;
+          $.get("getusers.php", 
+            function(data, status){
+              if(status == "success"){
+                  var results = JSON.parse(data);
+                  for (var i = 0; i < results.length; i++) {
+                    if (nick.localeCompare(results[i].NICK) == 0){
+                      correct = false;
+                      document.getElementById("nickerror").innerHTML = "El nick ya está en uso";
+                      document.getElementById("nickerror").classList.remove("w3-hide");            
+                    }
+                  }
+              }
+          });
+          if(correct){
+            document.getElementById("nickerror").innerHTML = "";
+            document.getElementById("nickerror").classList.add("w3-hide");  
+          }
+        } else {
+          document.getElementById("nickerror").innerHTML = "El nick debe tener entre 3 y 20 caracteres";
+          document.getElementById("nickerror").classList.remove("w3-hide");
+        }
+      } else {
+          document.getElementById("nickerror").innerHTML = "El nick no puede ser un número";
+          document.getElementById("nickerror").classList.remove("w3-hide");
+      }
+      return correct;
+    }//end function checkNick(nick)
+
+    function checkEmail(email) {
+      var correct = false,
+        emailPattern =  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      email = email.trim();
+      email = email.toLowerCase();
+      if (emailPattern.test(email)){
+        $.ajax({
+          async: false,
+          type: "GET" ,
+          url: "getusers.php",
+          success: function(data) {
+            var results = JSON.parse(data);
+            for (var i = 0; i < results.length; i++) {
+              if (email.localeCompare(results[i].EMAIL) == 0){
+                document.getElementById("emailerror").innerHTML = "El Correo electrónico ya está en uso";
+                document.getElementById("emailerror").classList.remove("w3-hide");     
+                return false;
+              }
+            }
+          }
+      });
+      return true;
+      } else {
+        document.getElementById("emailerror").innerHTML = "Debes introducir un correo correcto";
+        document.getElementById("emailerror").classList.remove("w3-hide");
+        return false;
+      }    
+    }//end function checkEmail(email)
+    
+
+    function checkName(name) {
+      var correct = false,
+        namePattern = /^[a-zA-Z]{3,30}$/;
+      name = name.trim();
+      if (namePattern.test(name)){
+        correct = true;
+        document.getElementById("nameerror").innerHTML = "";
+        document.getElementById("nameerror").classList.add("w3-hide");  
+      } else {
+        document.getElementById("nameerror").innerHTML = "Debes introducir un nombre correcto";
+        document.getElementById("nameerror").classList.remove("w3-hide");
+      }
+      return correct;
+    }//end function checkName(name)
+
+    function checkSubname(subname) {
+      var correct = false,
+        subnamePattern = /^[a-zA-Z]{3,30}$/;
+        subname = subname.trim();
+      if (subname.length==0){
+        correct = true;
+        document.getElementById("subnameerror").innerHTML = "";
+        document.getElementById("subnameerror").classList.add("w3-hide");  
+      } else {
+        if (subnamePattern.test(subname)){
+          correct = true;
+          document.getElementById("subnameerror").innerHTML = "";
+          document.getElementById("subnameerror").classList.add("w3-hide");  
+        } else {
+          document.getElementById("subnameerror").innerHTML = "Debes introducir un apellido correcto";
+          document.getElementById("subnameerror").classList.remove("w3-hide");
+        }
+      }
+      return correct;
+    }//end function checkSubname(subname)
+
+    function checkPass(pass) {
+      var correct = false;
+      if (pass.length >= 6 && pass.length <= 20){
+        correct = true;
+        document.getElementById("passerror").innerHTML = "";
+        document.getElementById("passerror").classList.add("w3-hide");  
+      } else {
+        document.getElementById("passerror").innerHTML = "La contraseña debe contener entre 6 y 20 caracteres";
+        document.getElementById("passerror").classList.remove("w3-hide");
+        }
+      return correct;
+    }//end function checkPass(pass)
+
+    function checkConfirmPass(confirmPass) {
+      var correct = false;
+      if (confirmPass.localeCompare(document.getElementById("passform").value) == 0){
+        correct = true;
+        document.getElementById("passcheckerror").innerHTML = "";
+        document.getElementById("passcheckerror").classList.add("w3-hide");  
+      } else {
+        document.getElementById("passcheckerror").innerHTML = "La contraseñas deben coincidir";
+        document.getElementById("passcheckerror").classList.remove("w3-hide");
+        }
+      return correct;
+    }//end function checkPass(pass)
+
+
+    document.getElementById("nickform").addEventListener("blur", function(){
+      checkNick(this.value);
+    });
+
+    document.getElementById("emailform").addEventListener("blur", function(){
+      checkEmail(this.value);
+    });
+
+    document.getElementById("nameform").addEventListener("blur", function(){
+      checkName(this.value);
+    });
+
+    document.getElementById("subnameform").addEventListener("blur", function(){
+      checkSubname(this.value);
+    });
+
+    document.getElementById("passform").addEventListener("blur", function(){
+      checkPass(this.value);
+    });
+
+    document.getElementById("passconfirmform").addEventListener("blur", function(){
+      checkConfirmPass(this.value);
+    });
+
+    document.getElementById("adduser").addEventListener("click", function(){
+      var arrayResults = [],
+          totalResult = 0;
+      arrayResults[0] = checkNick(document.getElementById("nickform").value);
+      arrayResults[1] = checkEmail(document.getElementById("emailform").value);
+      arrayResults[2] = checkName(document.getElementById("nameform").value);
+      arrayResults[3] = checkSubname(document.getElementById("subnameform").value);
+      arrayResults[4] = checkPass(document.getElementById("passform").value);
+      arrayResults[5] = checkConfirmPass(document.getElementById("passconfirmform").value);
+      for (var i = 0; i < arrayResults.length; i++){
+        if(arrayResults[i]){
+          totalResult++;
+        }
+      }
+
+      if(totalResult == 6){
+          $.post("formadduser.php",
+          {
+            nick: document.getElementById("nickform").value,
+            email: document.getElementById("emailform").value,
+            name: document.getElementById("nameform").value,
+            subname: document.getElementById("subnameform").value,
+            pass: document.getElementById("passform").value
+          },
+          function(data, status){
+            if(data == "1" && status == "success"){
+              document.getElementById("divuserform").classList.add("w3-hide");
+              document.getElementById("divusercreate").classList.remove("w3-hide");
+            } else {
+              document.getElementById("addusererror").classList.remove("w3-hide");
+            }
+          });
+        }
+    }); 
+  }
+
   //Scripts only avaliables in the page addbook
   if(window.location.href.indexOf("addbook") > 0){
+    
     function checkISBN(ISBN) {
       var correct = false,
           error = "El ISBN debe contener 10 o 13 digitos";
@@ -198,6 +375,126 @@ window.onload = function() {
             } else {
               document.getElementById("addbookcorrect").classList.add("w3-hide");
               document.getElementById("addbookerror").classList.remove("w3-hide");
+            }
+          });
+        }
+    }); 
+  }
+
+  //Scripts only avaliables in the page addauthor
+  if(window.location.href.indexOf("addauthor") > 0){
+        
+    function checkAuthor(author) {
+      var correct = false;
+      author = author.trim();
+      if (author.length >= 3 && author.length <= 100){
+        correct = true;
+          $.ajax({
+            async: false,
+            type: "GET" ,
+            url: "getauthors.php",
+            success: function(data) {
+              var results = JSON.parse(data);
+              for (var i = 0; i < results.length; i++) {
+                if (author.localeCompare(results[i].NAME) == 0){
+                  correct = false;
+                }
+              }
+            }
+        });
+        if (correct){
+          document.getElementById("nameerror").innerHTML = "";
+          document.getElementById("nameerror").classList.add("w3-hide");  
+        } else {
+          document.getElementById("nameerror").innerHTML = "El autor ya esta en la base de datos";
+          document.getElementById("nameerror").classList.remove("w3-hide");  
+        }
+      } else {
+        document.getElementById("nameerror").innerHTML = "El nombre debe tener entre 3 y 100 caracteres";
+        document.getElementById("nameerror").classList.remove("w3-hide");
+      }
+      return correct;
+    }//end function checkAuthor(title)
+
+
+    function checkBio(bio) {
+      var correct = false;
+      bio = bio.trim();
+      if (isNaN(bio)){
+        if (bio.length >= 20 && bio.length <= 10000){
+          correct = true;
+          document.getElementById("bioerror").innerHTML = "";
+          document.getElementById("bioerror").classList.add("w3-hide");
+        } else {
+          document.getElementById("bioerror").innerHTML = "La biografía debe tener entre 20 y 10000 caracteres";
+          document.getElementById("bioerror").classList.remove("w3-hide");
+        }
+      } else {
+        document.getElementById("bioerror").innerHTML = "La biografia no puede ser un número";
+        document.getElementById("bioerror").classList.remove("w3-hide");
+    }
+      return correct;
+    }//end function checkTitle(title)
+
+
+    function checkBirth(birth) {
+      var correct = false,
+        currentDate = new Date(),
+        splitDate = birth.split("-"),
+        authorDate = new Date(splitDate[0], splitDate[1], splitDate[2]);
+
+      if ((currentDate.getUTCFullYear() - authorDate.getUTCFullYear()) <= 16) {
+        document.getElementById("dateerror").innerHTML = "El autor no puede tener menos de 16 años";
+        document.getElementById("dateerror").classList.remove("w3-hide");
+      } else {
+        document.getElementById("dateerror").innerHTML = "";
+        document.getElementById("dateerror").classList.add("w3-hide");
+      }
+      return correct;
+    }//end function checkBirth(birth)
+
+    document.getElementById("authorform").addEventListener("blur", function(){
+      checkAuthor(this.value);
+    });
+
+    document.getElementById("bioform").addEventListener("blur", function(){
+      checkBio(this.value);
+    });
+
+    document.getElementById("dateform").addEventListener("blur", function(){
+      checkBirth(this.value);
+    });
+
+
+    document.getElementById("addnewauthor").addEventListener("click", function(){
+      var arrayResults = [],
+          totalResult = 0;
+      arrayResults[0] = checkAuthor(document.getElementById("authorform").value);
+      arrayResults[1] = checkBio(document.getElementById("bioform").value);
+      arrayResults[2] = checkBirth(document.getElementById("dateform").value);
+      for (var i = 0; i < arrayResults.length; i++){
+        if(arrayResults[i]){
+          totalResult++;
+        }
+      }
+      if(totalResult == 3){
+        var splitDate = birth.split("-")
+          $.post("formaddauthor.php",
+          {
+            name: document.getElementById("authorform").value,
+            bio: document.getElementById("bioform").value,
+            year: splitDate[0],
+            month: splitDate[1],
+            day: splitDate[2]
+          },
+          function(data, status){
+            console.log(data);
+            if(data == "1" && status == "success"){
+              document.getElementById("addauthorcorrect").classList.remove("w3-hide");
+              document.getElementById("addauthorerror").classList.add("w3-hide");
+            } else {
+              document.getElementById("addauthorcorrect").classList.add("w3-hide");
+              document.getElementById("addauthorerror").classList.remove("w3-hide");
             }
           });
         }

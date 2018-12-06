@@ -1,3 +1,6 @@
+<?php
+    ob_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,7 +12,7 @@
   <link rel="stylesheet" href="css/pagedesign.css">
   <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
   <script src="js/menu.js"></script>
-  <script src="http://code.jquery.com/jquery-3.3.1.js"
+  <script src="https://code.jquery.com/jquery-3.3.1.js"
           integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
           crossorigin="anonymous"></script>
 </head>
@@ -17,7 +20,7 @@
   <main>
     <div class="w3-top">
       <div class="w3-bar tbo-dark">
-        <a href="#" class="w3-bar-item w3-button w3-hover-gray" id="menuButton">☰</a><!-- function to keep the hover color? -->
+        <a href="#" class="w3-bar-item w3-button w3-hover-gray" id="menuButton">☰</a>
         <div id ="toNarrow">
           <a href="index.php" class="w3-bar-item w3-button w3-hover-gray">tuBibliotecaOnline</a>
           <a href="library.php" class="w3-bar-item w3-button w3-hover-gray">Tu biblioteca</a>
@@ -25,7 +28,7 @@
           <a href="authors.php" class="w3-bar-item w3-button w3-hover-gray">Autores</a>
           <a href="publishers.php" class="w3-bar-item w3-button w3-hover-gray">Editoriales</a>
         </div>
-        <a href="#" class="w3-bar-item w3-button w3-right w3-hover-gray" id="userButton">usuario</a><!-- here we change this text for the user avatar (or the default one) -->
+        <a href="logout.php" class="w3-bar-item w3-button w3-right w3-hover-gray" id="userButton">Desconectar</a>
       </div>
     </div>
     <div id="header-size"></div>
@@ -36,10 +39,4 @@
      <a href="books.php" class="w3-bar-item w3-button tbo-hover-cream">Libros</a>
      <a href="authors.php" class="w3-bar-item w3-button tbo-hover-cream">Autores</a>
      <a href="publishers.php" class="w3-bar-item w3-button tbo-hover-cream">Editoriales</a>
-    </div>
-    <!-- Userbar -->
-    <div class="w3-sidebar w3-bar-block w3-hide" id="userBar">
-     <a href="#" class="w3-bar-item w3-button tbo-hover-cream">Mi cuenta</a>
-     <a href="#" class="w3-bar-item w3-button tbo-hover-cream">Ayuda</a>
-     <a href="logout.php" class="w3-bar-item w3-button tbo-hover-cream">Desconectar</a>
     </div>

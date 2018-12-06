@@ -1,6 +1,5 @@
 <?php
   require_once('php_includers/db_connection.php');
-  //getBooks($title);
 ?>
 
 <div class="addBook tbo-cream w3-padding-large">
