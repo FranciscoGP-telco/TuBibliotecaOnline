@@ -6,6 +6,13 @@
   if (file_exists($frontRute)){
     $exitsFront = true;
   }
+  $bookInLibrary = 2;
+  if(isset($_COOKIE['login'])){
+      $cookieSplit = explode(",", $_COOKIE["login"]);
+      $user = $cookieSplit[0];
+      $bookInLibrary = DB::bookInLibrary($user, $_GET["ISBN"]);
+  }
+ 
 ?>
     <div class="book tbo-cream">
       <div class="w3-row">
@@ -20,10 +27,24 @@
             ?>
             <p><?php print_r($book["TITLE"]) ?></p>
             <p>ISBN: <?php print_r($book["ISBN"]) ?></p>
-            <button class="w3-button w3-round tbo-mint w3-block" id="addBook">Añadir</button></br>
+            <?php
+              if($bookInLibrary["ONLIBRARY"] == 1){
+                print_r("<p>¡Libro ya en tu biblioteca!</p>");
+              } else if ($bookInLibrary == 2){
+                print_r("<p>Inicia sesión para añadir este libro a tu biblioteca</p>");
+              } else {
+                print_r('
+                <form id="addbooklibrary">
+                  <input type="hidden" id="isbn" value="'.$_GET["ISBN"].'">
+                <button class="w3-button w3-round tbo-mint w3-block" id="addBook">Añadir</button></br>
+              </form>
+              ');
+              }
+
+          ?>
             <a href="https://www.google.es/search?q=<?php print_r(str_replace(' ', '+',$book["TITLE"])) ?>" class="noUnder"><button class="w3-button w3-round tbo-mint w3-block">Buscar en Google</button></a>
-          </div>
         </div>
+          </div>
         <div class="w3-half w3-container">
           <p class="author">Autor: <?php print_r($book["AUTHOR"]) ?> · Editorial: <a><?php print_r($book["PUBLISHER"]) ?></a></p>
           <p class="plot"><?php print_r($book["PLOT"]) ?></p>

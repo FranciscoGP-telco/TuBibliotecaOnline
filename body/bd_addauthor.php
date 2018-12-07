@@ -12,11 +12,11 @@
         <p><label for="dateform">Fecha de nacimiento:</label>
         <input class="w3-input w3-border" name="dateform" id="dateform" type="date"></p><span class="w3-tag w3-padding w3-small w3-red w3-center w3-hide" id="dateerror"></span>
         ');
+        print_r('<div id="addauthorcorrect" class="w3-panel tbo-mint w3-display-container w3-hide">
+        <h2>Autor creado correctamente!</h2>
+        </div>');
+        print_r('<div id="addauthorerror" class="w3-panel tbo-dark w3-display-container w3-hide">
+        <h2>El autor ya existe</h2>
+        </div>');
       print_r('</br><button class="w3-button w3-round tbo-mint w3-block" id="addnewauthor">Crear autor</button>');
-      print_r('<div id="addauthorcorrect" class="w3-panel tbo-mint w3-display-container w3-hide">
-      <h2>Autor creado correctamente!</h2>
-      </div>');
-      print_r('<div id="addauthorerror" class="w3-panel tbo-dark w3-display-container w3-hide">
-      <h2>El autor ya existe</h2>
-      </div>');
 ?>

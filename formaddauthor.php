@@ -9,21 +9,24 @@
   $day = $_POST["day"];
   $results = array();
   $totalResults = 0;
-  $
+  
+    $results[0] = false;
     if(strlen($name) >= 3 && strlen($name) <= 100){
       $results[0] = true;
-      for ($i = 0; $i < $authors; $i++){
+      for ($i = 0; $i < $totalAuthors; $i++){
         if($authors[$i]["NAME"] == $name){
           $results[0] = false;
         }
       }
     } 
 
+    $results[1] = false;
     if(strlen($bio) >= 20 && strlen($name) <= 10000){
         $results[1] = true;
     }
 
-    if((date("Y") - $year) <= 16){
+    $results[2] = false;
+    if((date("Y") - $year) >= 16){
       $results[2] = true;
   }
 
@@ -32,9 +35,10 @@
             $totalResults++;
         }
     }
-    
+   
+
     if ($totalResults == 3){
-        $addAuthorResult = DB::insertAuthor($id, $name, $bio, $year, $month, $day);
+        $addAuthorResult = DB::insertAuthor($name, $bio, $year, $month, $day);
         echo ($addAuthorResult);    
     } else {
         echo ("Los datos introducidos no son correctos.");

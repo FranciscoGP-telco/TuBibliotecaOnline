@@ -534,7 +534,7 @@ window.onload = function() {
   }
 
   //Scripts only avaliables in the page book
-  /*if(window.location.href.indexOf("book.php") > 0){
+  if(window.location.href.indexOf("book.php") > 0){
     document.getElementById("addBook").addEventListener("click", function(){
       
       var user = decodeURIComponent(document.cookie),
@@ -552,7 +552,7 @@ window.onload = function() {
         }
       });
     });
-  }*/
+  }
 };
 
 function deleteBook(ISBN){

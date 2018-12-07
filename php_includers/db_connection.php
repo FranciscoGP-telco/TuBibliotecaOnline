@@ -59,41 +59,71 @@
       . "GROUP BY ISBN\n"
       . "ORDER BY ADD_DATE ASC \n";
       $result = self::execQuery ($sql);
-      $BOOKS = null;
+      $books = null;
       if(isset($result)){
-        $BOOKS = $result->fetchAll(PDO::FETCH_ASSOC);
+        $books = $result->fetchAll(PDO::FETCH_ASSOC);
       }
-    return $BOOKS;    
+    return $books;    
     }
 
     public static function getAuthors() {
       $sql = "SELECT ID_AUTHOR, NAME FROM `AUTHOR` ORDER BY ID_AUTHOR ASC";
       $result = self::execQuery ($sql);
-      $AUTHORs = null;
+      $authors = null;
       if(isset($result)){
-        $AUTHORs = $result->fetchAll(PDO::FETCH_ASSOC);
+        $authors = $result->fetchAll(PDO::FETCH_ASSOC);
       }
-    return $AUTHORs;    
+    return $authors;    
     }
 
     public static function getPublishers() {
       $sql = "SELECT ID_PUBLISHER, NAME FROM `PUBLISHERS` ORDER BY NAME ASC";
       $result = self::execQuery ($sql);
-      $PUBLISHERS = null;
+      $publishers = null;
       if(isset($result)){
-        $PUBLISHERS = $result->fetchAll(PDO::FETCH_ASSOC);
+        $publishers = $result->fetchAll(PDO::FETCH_ASSOC);
       }
-    return $PUBLISHERS;
+    return $publishers;
     }
 
     public static function getBooks($title) {
       $sql = "SELECT NAME, ISBN FROM `BOOKS` WHERE NAME LIKE '%".$title."%' ORDER BY NAME ASC";
       $result = self::execQuery ($sql);
-      $BOOKS = null;
+      $books = null;
       if(isset($result)){
-        $BOOKS = $result->fetchAll(PDO::FETCH_ASSOC);
+        $books = $result->fetchAll(PDO::FETCH_ASSOC);
       }
-    return $BOOKS;
+    return $books;
+    }
+
+    public static function getAuthorsByName($name) {
+      $sql = "SELECT ID_AUTHOR, NAME FROM `AUTHOR` WHERE NAME LIKE '%".$name."%' ORDER BY NAME ASC";
+      $result = self::execQuery ($sql);
+      $authors = null;
+      if(isset($result)){
+        $authors = $result->fetchAll(PDO::FETCH_ASSOC);
+      }
+    return $authors;
+    }
+
+    public static function getAuthorsById($id) {
+      $sql = "SELECT * FROM `AUTHOR` WHERE ID_AUTHOR = ".$id."";
+      $result = self::execQuery ($sql);
+      $row = null;
+      if(isset($result)){
+      $row = $result->fetch(PDO::FETCH_ASSOC);
+      }
+    return $row;
+    }
+
+    public static function bookInLibrary($nick, $ISBN) {
+      $sql = "SELECT COUNT(*) AS ONLIBRARY FROM `library` WHERE NICK='".$nick."' AND ISBN='".$ISBN."'";
+      $result = self::execQuery ($sql);
+      $row = null;
+      if(isset($result)){
+        $row = $result->fetch(PDO::FETCH_ASSOC);
+      }
+    return $row;
     }
 
     public static function validateUser($user, $pass) {
@@ -151,8 +181,8 @@
       return $executed;
     }
 
-    public static function insertAuthor($id, $name, $bio, $year, $month, $day) {
-      $sql = "INSERT INTO `author` (`ID_AUTHOR`, `NAME`, `BIOGRAPHY`, `YEAROFBIRTH`) VALUES ('".$id."', '".$name."', '".$bio."', '".$year."-".$month."-".$day."')";
+    public static function insertAuthor($name, $bio, $year, $month, $day) {
+      $sql = "INSERT INTO `AUTHOR` (`ID_AUTHOR`, `NAME`, `BIOGRAPHY`, `YEAROFBIRTH`) VALUES (NULL, '".$name."', '".$bio."', '".$year."-".$month."-".$day."')";
       $executed = false;
       $result = self::execQuery ($sql);
       if(isset($result)){
@@ -160,5 +190,25 @@
       }
       return $executed;
     }
+
+    public static function insertLibrary($nick, $ISBN) {
+      $sql = "INSERT INTO `LIBRARY` (`NICK`, `ISBN`) VALUES ('".$nick."', '".$ISBN."')";
+      $executed = false;
+      $result = self::execQuery ($sql);
+      if(isset($result)){
+        $executed = true;
+      }
+      return $executed;
+    }
+    public static function deleteBookFromLibrary($ISBN, $nick) {
+      $sql = "DELETE FROM `LIBRARY` WHERE `library`.`NICK` = '".$nick."' AND `library`.`ISBN` = '".$ISBN."'";
+      $executed = false;
+      $result = self::execQuery ($sql);
+      if(isset($result)){
+        $executed = true;
+      }
+      return $executed;
+    }
+
   }
 ?>

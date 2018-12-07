@@ -1,5 +1,5 @@
 <?php
-
+$PageTitle =  "Añadir autor";
 include_once('php_includers/header.php');
 
 include_once('body/bd_addauthor.php');

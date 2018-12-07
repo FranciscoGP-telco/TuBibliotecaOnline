@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="css/w3.css">	
   <link rel="stylesheet" href="css/pagedesign.css">
   <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
-  <script src="js/menu.js"></script>
+  <script src="js/menu2.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.js"
           integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
           crossorigin="anonymous"></script>

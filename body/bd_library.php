@@ -6,6 +6,11 @@
     $recientBooks = DB::getRecientBooks($USER);
     $library = DB::getUserLibrary($USER);
     $imgroute = "img/".$recientBooks[0]['ISBN'].".png";
+    print_r('<div class="advice w3-hide" id="advicedelete">
+        <p>¿Deseas borrar el libro de tu librería?</p>
+        <button class="w3-button w3-tiny w3-round tbo-mint w3-block" id="confirmDelete">Sí</button></br>
+        <button class="w3-button w3-tiny w3-round tbo-mint w3-block" id="rollbackDelete">No</button>
+      </div>');
     print_r('
     <div class="w3-container tbo-cream">
     <h1 class="titles">Tus últimos libros añadidos:</h1>
@@ -22,7 +27,7 @@
           print_r ("<a href=\"book.php?ISBN=".$recientBooks[0]['ISBN']."\" class=\"noUnder\"><img src=\"".$imgroute."\" alt=\"".$recientBooks[0]['TITLE']."\" class=\"bookCoverSmall\" id=\"recient".$recientBooks[0]['ISBN']."\">");
           print_r ("<p>".$recientBooks[0]["TITLE"]."</p></a>");
         } else {
-          print_r ("<p>¡No has añadido aún ningún book!</p>");
+          print_r ("<p>¡No has añadido aún ningún libro!</p>");
         }
       print_r('
       </div>
@@ -81,10 +86,10 @@
           for ($i = 0; $i < count($library); $i++){
           print_r("<tr>
             <td>".$library[$i]['ISBN']."</td>
-            <td><a href='book.php?ISBN=".$library[$i]['ISBN']."'>".$library[$i]['TITLE']."</td>
+            <td><a href='book.php?ISBN=".$library[$i]['ISBN']."'>".$library[$i]['TITLE']."</a></td>
             <td>".$library[$i]['GENRE']."</td>
-            <td><a href='publisher.php?ISBN=".$library[$i]['PUBLISHER']."'>".$library[$i]['PUBLISHER']."</td>
-            <td><a href=removefromlibrary.php?ISBN='".$library[$i]['ISBN']."'>Borrar</a></td>
+            <td><a href='publisher.php?ISBN=".$library[$i]['PUBLISHER']."'>".$library[$i]['PUBLISHER']."</a></td>
+            <td><button class='w3-button w3-tiny w3-round tbo-mint w3-block' onclick='deleteBook(".$library[$i]['ISBN'].")'>X</button></td>
           </tr>");
           }
           print_r("</table>");
@@ -98,5 +103,4 @@
     </div>
     ');
   }
-
   ?>
