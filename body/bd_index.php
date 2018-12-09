@@ -1,7 +1,9 @@
 <?php
   require_once('php_includers/db_connection.php');
   $popularBooks = DB::getPopularBooks();
-  $imgroute = "img/".$popularBooks[0]['ISBN'].".png";
+  if(isset($popularBooks[0])){
+    $imgroute = "img/".$popularBooks[0]['ISBN'].".png";
+  }
   if(isset($_COOKIE["login"])){
     $cookieSplit = explode(",", $_COOKIE["login"]);
     $USER = $cookieSplit[0];

@@ -29,16 +29,16 @@
             <p>ISBN: <?php print_r($book["ISBN"]) ?></p>
             <?php
               if($bookInLibrary["ONLIBRARY"] == 1){
-                print_r("<p>¡Libro ya en tu biblioteca!</p>");
+                print_r("<p>¡Libro ya en tu biblioteca!</p>
+                <button class='w3-hide' id='addBook'>Añadir</button>");
               } else if ($bookInLibrary == 2){
-                print_r("<p>Inicia sesión para añadir este libro a tu biblioteca</p>");
+                print_r("<p>Inicia sesión para añadir este libro a tu biblioteca</p>
+                <button class='w3-hide' id='addBook'>Añadir</button>");
               } else {
-                print_r('
-                <form id="addbooklibrary">
-                  <input type="hidden" id="isbn" value="'.$_GET["ISBN"].'">
-                <button class="w3-button w3-round tbo-mint w3-block" id="addBook">Añadir</button></br>
-              </form>
-              ');
+                print_r("
+                <input type='hidden' id='isbn' value='".$_GET['ISBN']."'>
+                <button class='w3-button w3-round tbo-mint w3-block' id='addBook'>Añadir</button></br>
+              ");
               }
 
           ?>

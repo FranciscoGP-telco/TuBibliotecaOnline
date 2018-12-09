@@ -13,6 +13,10 @@ body {
   font-size: 34px;
   text-align: center;
 }
+#map{
+  height: 300px;
+  width: 300px;
+}
 .advice{
     position:fixed;
     top: 50%;
@@ -49,6 +53,13 @@ body {
   min-height: 500px;
   width: 50%;
 }
+.admin{
+  margin: auto;
+  max-width: 800px;
+  min-width: 800px;
+  min-height: 500px;
+  width: 50%;
+}
 .plot{
   font-size: 15px;
 }
@@ -56,6 +67,12 @@ body {
   position: fixed;
   left: 0;
   bottom: 0;
+  width: 100%;
+}
+#cookies{
+  position: fixed;
+  left: 0;
+  bottom: 20px;
   width: 100%;
 }
 #userBar{

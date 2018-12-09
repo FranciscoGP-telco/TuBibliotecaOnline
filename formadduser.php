@@ -7,6 +7,7 @@
   $name = $_POST["name"];
   $subname = $_POST["subname"];
   $pass = $_POST["pass"];
+  $userType = $_POST["userType"];
   $results = array();
   $totalResults = 0;
 
@@ -48,7 +49,7 @@
     }
     
     if ($totalResults == 5){
-        $addUserResult = DB::insertUser($nick, $name, $subname, $pass, $email);
+        $addUserResult = DB::insertUser($nick, $name, $subname, $userType, $pass, $email);
         echo ($addUserResult);    
     } else {
         echo ("Los datos introducidos no son correctos.");

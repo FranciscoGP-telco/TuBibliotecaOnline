@@ -8,13 +8,15 @@
     if(isset($_POST["user"])){
       $checkUser = DB::validateUser($_POST["user"], $_POST["password"]);
       if ($checkUser) {
-        setcookie("login", $_POST["user"].','.md5($_POST["password"]));
+        setcookie("login", $_POST["user"]);
+        setcookie("pass", md5($_POST["password"]));
         print_r('Usuario ya logueado. <a href="index.php">volver al inicio</a>');
       } else {
         print_r("Login incorrecto.");
       }
     } else {
       print_r('<div class="addBook tbo-cream w3-padding-large">
+      <p>Si no estas registrado puedes hacerlo pulsando <a href="checkin.php">aquí</a></p>
       <form method="POST" action="login.php">
         <p><label for="user">Nombre de u  suario:</label>
         <input type="text" name="user" id="user"></p>

@@ -5,7 +5,9 @@
     $USER = $cookieSplit[0];
     $recientBooks = DB::getRecientBooks($USER);
     $library = DB::getUserLibrary($USER);
-    $imgroute = "img/".$recientBooks[0]['ISBN'].".png";
+    if (isset($recientBooks[0])){
+      $imgroute = "img/".$recientBooks[0]['ISBN'].".png";
+    }
     print_r('<div class="advice w3-hide" id="advicedelete">
         <p>¿Deseas borrar el libro de tu librería?</p>
         <button class="w3-button w3-tiny w3-round tbo-mint w3-block" id="confirmDelete">Sí</button></br>
@@ -89,7 +91,7 @@
             <td><a href='book.php?ISBN=".$library[$i]['ISBN']."'>".$library[$i]['TITLE']."</a></td>
             <td>".$library[$i]['GENRE']."</td>
             <td><a href='publisher.php?ISBN=".$library[$i]['PUBLISHER']."'>".$library[$i]['PUBLISHER']."</a></td>
-            <td><button class='w3-button w3-tiny w3-round tbo-mint w3-block' onclick='deleteBook(".$library[$i]['ISBN'].")'>X</button></td>
+            <td><button class='w3-button w3-tiny w3-round tbo-mint w3-block' onclick='deleteBookLibrary(".$library[$i]['ISBN'].")'>X</button></td>
           </tr>");
           }
           print_r("</table>");

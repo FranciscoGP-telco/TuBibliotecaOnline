@@ -25,6 +25,17 @@
     return $row;
     }
 
+    public static function getAllBooks() {
+      $sql = "SELECT ISBN, NAME, GENRE\n"
+      . "FROM BOOKS";
+      $result = self::execQuery ($sql);
+      $books = null;
+      if(isset($result)){
+        $books = $result->fetchAll(PDO::FETCH_ASSOC);
+      }
+    return $books;
+    }
+
     public static function getRecientBooks($USER) {
       $sql = "SELECT B.ISBN AS ISBN, B.NAME AS TITLE, A.NAME AS AUTHOR, L.ADD_DATE AS ADD_DATE\n"
       . "FROM USERS U, BOOKS B, LIBRARY L, AUTHOR A\n"
@@ -32,11 +43,11 @@
       . "ORDER BY ADD_DATE ASC \n"
       . "LIMIT 4 ";
       $result = self::execQuery ($sql);
-      $BOOKS = null;
+      $books = null;
       if(isset($result)){
-        $BOOKS = $result->fetchAll(PDO::FETCH_ASSOC);
+        $books = $result->fetchAll(PDO::FETCH_ASSOC);
       }
-    return $BOOKS;
+    return $books;
     }
 
     public static function getUserLibrary($USER) {
@@ -77,7 +88,17 @@
     }
 
     public static function getPublishers() {
-      $sql = "SELECT ID_PUBLISHER, NAME FROM `PUBLISHERS` ORDER BY NAME ASC";
+      $sql = "SELECT ID_PUBLISHER, LOWER(NAME) AS NAME, LOWER(EMAIL) AS EMAIL, ADDRESS, PHONE FROM `PUBLISHERS` ORDER BY NAME ASC";
+      $result = self::execQuery ($sql);
+      $publishers = null;
+      if(isset($result)){
+        $publishers = $result->fetchAll(PDO::FETCH_ASSOC);
+      }
+    return $publishers;
+    }
+
+    public static function getPublishersByName($name) {
+      $sql = "SELECT ID_PUBLISHER, NAME, EMAIL, PHONE FROM `PUBLISHERS` WHERE NAME LIKE '%".$name."%' ORDER BY NAME ASC";
       $result = self::execQuery ($sql);
       $publishers = null;
       if(isset($result)){
@@ -104,6 +125,16 @@
         $authors = $result->fetchAll(PDO::FETCH_ASSOC);
       }
     return $authors;
+    }
+
+    public static function getPublisherById($id) {
+      $sql = "SELECT ID_PUBLISHER, NAME, EMAIL, PHONE, ADDRESS FROM `PUBLISHERS` WHERE ID_PUBLISHER = ".$id."";
+      $result = self::execQuery ($sql);
+      $row = null;
+      if(isset($result)){
+      $row = $result->fetch(PDO::FETCH_ASSOC);
+      }
+    return $row;
     }
 
     public static function getAuthorsById($id) {
@@ -141,7 +172,7 @@
     }
 
     public static function listUsers() {
-      $sql = "SELECT NICK, EMAIL FROM `USERS`";
+      $sql = "SELECT NICK, EMAIL, NAME, SUBNAME, USERTYPE, PASS FROM `USERS`";
       $result = self::execQuery ($sql);
       $users = false;
       if(isset($result)){
@@ -150,8 +181,28 @@
     return $users;
     }
 
+    public static function numUsers(){
+      $sql = "SELECT COUNT(*) AS NUMUSERS FROM `users`";
+      $result = self::execQuery ($sql);
+      $row = null;
+      if(isset($result)){
+        $row = $result->fetch(PDO::FETCH_ASSOC);
+      }
+    return $row;
+    }
+
+    public static function userIsAdmin($user) {
+      $sql = "SELECT USERTYPE FROM `USERS` WHERE NICK = '".$user."'";
+      $result = self::execQuery ($sql);
+      $row = null;
+      if(isset($result)){
+        $row = $result->fetch(PDO::FETCH_ASSOC);
+      }
+    return $row;
+    }
+
     public static function listAuthors() {
-      $sql = "SELECT ID_AUTHOR, NAME FROM `author` ORDER BY ID_AUTHOR DESC";
+      $sql = "SELECT ID_AUTHOR, NAME, YEAROFBIRTH FROM `author` ORDER BY ID_AUTHOR DESC";
       $result = self::execQuery ($sql);
       $authors = false;
       if(isset($result)){
@@ -170,9 +221,9 @@
       return $executed;
     }
 
-    public static function insertUser($nick, $name, $subname, $pass, $email) {
+    public static function insertUser($nick, $name, $subname, $userType,  $pass, $email) {
       $pass = md5($pass);
-      $sql = "INSERT INTO `USERS` (`NICK`, `NAME`, `SUBNAME`, `USERTYPE`, `PASS`, `EMAIL`) VALUES ('".$nick."', '".$name."', '".$subname."', 'USUARIO', '".$pass."', '".$email."')";
+      $sql = "INSERT INTO `USERS` (`NICK`, `NAME`, `SUBNAME`, `USERTYPE`, `PASS`, `EMAIL`) VALUES ('".$nick."', '".$name."', '".$subname."', '".$userType."', '".$pass."', '".$email."')";
       $executed = false;
       $result = self::execQuery ($sql);
       if(isset($result)){
@@ -191,6 +242,16 @@
       return $executed;
     }
 
+    public static function insertPublisher($name, $address, $phone, $email) {
+      $sql = "INSERT INTO `PUBLISHERS` (`ID_PUBLISHER`, `NAME`, `ADDRESS`, `PHONE`, `EMAIL`) VALUES (NULL, '".$name."', '".$address."', '".$phone."', '".$email."')";
+      $executed = false;
+      $result = self::execQuery ($sql);
+      if(isset($result)){
+        $executed = true;
+      }
+      return $executed;
+    }
+
     public static function insertLibrary($nick, $ISBN) {
       $sql = "INSERT INTO `LIBRARY` (`NICK`, `ISBN`) VALUES ('".$nick."', '".$ISBN."')";
       $executed = false;
@@ -200,8 +261,94 @@
       }
       return $executed;
     }
+
+
+    public static function updateUser($nick, $name, $subname, $usertype, $email) {
+      $sql = "UPDATE `USERS` SET `NAME` = '".$name."', `SUBNAME` = '".$subname."', `USERTYPE` = '".$usertype."', `EMAIL` = '".$email."'  WHERE `NICK` = '".$nick."'";
+      $executed = false;
+      $result = self::execQuery ($sql);
+      if(isset($result)){
+        $executed = true;
+      }
+      return $executed;
+    }
+
+    public static function updateBook($ISBN, $name, $genre) {
+      $sql = "UPDATE `BOOKS` SET `NAME` = '".$name."', `GENRE` = '".$genre."' WHERE `ISBN` = '".$ISBN."'";
+      $executed = false;
+      $result = self::execQuery ($sql);
+      if(isset($result)){
+        $executed = true;
+      }
+      return $executed;
+    }
+
+    public static function updatePublisher($id, $name, $address, $phone, $email) {
+      $sql = "UPDATE `PUBLISHERS` \n"
+      ."SET `NAME` = '".$name."', `ADDRESS` = '".$address."', `PHONE` = '".$phone."', `EMAIL` = '".$email."' \n"
+      ."WHERE `ID_PUBLISHER` = '".$id."'";
+      $executed = false;
+      $result = self::execQuery ($sql);
+      if(isset($result)){
+        $executed = true;
+      }
+      return $executed;
+    }
+
+    public static function updateAuthor($id, $name, $date) {
+      $sql = "UPDATE `AUTHOR` \n"
+      ."SET `NAME` = '".$name."', `YEAROFBIRTH` = '".$date."' \n"
+      ."WHERE `ID_AUTHOR` = '".$id."'";
+      $executed = false;
+      $result = self::execQuery ($sql);
+      if(isset($result)){
+        $executed = true;
+      }
+      return $executed;
+    }
+
     public static function deleteBookFromLibrary($ISBN, $nick) {
       $sql = "DELETE FROM `LIBRARY` WHERE `library`.`NICK` = '".$nick."' AND `library`.`ISBN` = '".$ISBN."'";
+      $executed = false;
+      $result = self::execQuery ($sql);
+      if(isset($result)){
+        $executed = true;
+      }
+      return $executed;
+    }
+
+    public static function deleteUser($nick) {
+      $sql = "DELETE FROM `USERS` WHERE `NICK` = '".$nick."'";
+      $executed = false;
+      $result = self::execQuery ($sql);
+      if(isset($result)){
+        $executed = true;
+      }
+      return $executed;
+    }
+
+    public static function deleteBook($ISBN) {
+      $sql = "DELETE FROM `BOOKS` WHERE `ISBN` = '".$ISBN."'";
+      $executed = false;
+      $result = self::execQuery ($sql);
+      if(isset($result)){
+        $executed = true;
+      }
+      return $executed;
+    }
+
+    public static function deletePublisher($id) {
+      $sql = "DELETE FROM `PUBLISHERS` WHERE `ID_PUBLISHER` = '".$id."'";
+      $executed = false;
+      $result = self::execQuery ($sql);
+      if(isset($result)){
+        $executed = true;
+      }
+      return $executed;
+    }
+
+    public static function deleteAuthor($id) {
+      $sql = "DELETE FROM `AUTHOR` WHERE `ID_AUTHOR` = '".$id."'";
       $executed = false;
       $result = self::execQuery ($sql);
       if(isset($result)){

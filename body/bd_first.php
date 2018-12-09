@@ -2,10 +2,8 @@
   require_once('php_includers/db_connection.php');
   print_r('<div class="addBook tbo-cream w3-padding-large" id="divuserform">
         <h1 class="titles">¡Bienvenido a TuBibliotecaOnline!</h1>
-        <p>Con TuBibliotecaOnline podras llevar al día todos los libros que posees, comprobar los datos de tus editoriales 
-        favoritas y tener todos los datos de los autores a los que sigues. 
-        Para registrarte solo deberes rellenar los siguientes datos</p>
-        
+        <p>Para empezar a usar la página web debes crear un primer usuario de administración</p>
+        <p>Solo tienes que rellenar los siguientes datos:</p>
         <p><label for="nickform">Nick:</label>
         <input class="w3-input w3-border" name="nickform" id="nickform" type="text" autofocus></p><span class="w3-tag w3-padding w3-small w3-red w3-center w3-hide" id="nickerror"></span>
         <p><label for="emailform">Correo electronico:</label>
@@ -18,6 +16,7 @@
         <input class="w3-input w3-border" name="passform" id="passform" type="password"></p><span class="w3-tag w3-padding w3-small w3-red w3-center w3-hide" id="passerror"></span>
         <p><label for="passconfirmform">Confirmar contraseña:</label>
         <input class="w3-input w3-border" name="passconfirmform" id="passconfirmform" type="password"></p><span class="w3-tag w3-padding w3-small w3-red w3-center w3-hide" id="passcheckerror"></span>
+        <input class="w3-input w3-border" name="usertype" id="usertype" type="hidden" value="ADMIN">
         <br/><span class="w3-tag w3-padding w3-red w3-center w3-hide" id="addusererror"></span>
       ');
       print_r('</br><button class="w3-button w3-round tbo-mint w3-block" id="adduser">Crear usuario</button>
