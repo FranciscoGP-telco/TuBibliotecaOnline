@@ -62,7 +62,7 @@ window.onload = function() {
         }
       }
       //jquery ajax function, calling searchbook.php page for the information
-      $.post("searchbook.php",
+      $.post("php_db/searchbook.php",
       {
         title: document.getElementById("titleSearch").value
       },
@@ -94,7 +94,7 @@ window.onload = function() {
         }
       }
       //jquery ajax function, calling searchpublisher.php page for the information
-      $.post("searchpublisher.php",
+      $.post("php_db/searchpublisher.php",
       {
         name: document.getElementById("publisherSearch").value
       },
@@ -128,7 +128,7 @@ window.onload = function() {
         }
       }
        //jquery ajax function, calling searchpublisher.php page for the information
-      $.post("searchauthor.php",
+      $.post("php_db/searchauthor.php",
       {
         name: document.getElementById("authorsearch").value
       },
@@ -153,7 +153,7 @@ window.onload = function() {
       var finalUser = Cookies.get('login'),
           isbn = document.getElementById("isbn").value;  
       //jquery ajax function to send the information to add the book.
-      $.post("addlibrary.php",
+      $.post("php_db/addlibrary.php",
       {
         nick: finalUser,
         isbn: isbn
@@ -190,7 +190,7 @@ window.onload = function() {
         if (nick.length >= 3 && nick.length <= 20){
           correct = true;
           //jquery ajax function, used to check if the name is in use with the DB information
-          $.get("getusers.php", 
+          $.get("php_db/getusers.php", 
             function(data, status){
               if(status == "success"){
                   var results = JSON.parse(data);
@@ -233,7 +233,7 @@ window.onload = function() {
         $.ajax({
           async: false,
           type: "GET" ,
-          url: "getusers.php",
+          url: "php_db/getusers.php",
           success: function(data) {
             var results = JSON.parse(data);
             for (var i = 0; i < results.length; i++) {
@@ -376,7 +376,7 @@ window.onload = function() {
 
       //If all is correct, calling the jquery ajax function to post the information
       if(totalResult == 6){
-          $.post("formadduser.php",
+          $.post("php_db/formadduser.php",
           {
             nick: document.getElementById("nickform").value,
             email: document.getElementById("emailform").value,
@@ -508,7 +508,7 @@ window.onload = function() {
       }
       //if everithing is correct, calling formaddbook.php to add the book
       if(totalResult == 4){
-          $.post("formaddbook.php",
+          $.post("php_db/formaddbook.php",
           {
             ISBN: document.getElementById("ISBNform").value,
             title: document.getElementById("titleform").value,
@@ -544,7 +544,7 @@ window.onload = function() {
           $.ajax({
             async: false,
             type: "GET" ,
-            url: "getauthors.php",
+            url: "php_db/getauthors.php",
             success: function(data) {
               var results = JSON.parse(data);
               for (var i = 0; i < results.length; i++) {
@@ -640,7 +640,7 @@ window.onload = function() {
       if(totalResult == 3){
         var splitDate = birth.split("-");
 
-          $.post("formaddauthor.php",
+          $.post("php_db/formaddauthor.php",
           {
             name: document.getElementById("authorform").value,
             bio: document.getElementById("bioform").value,
@@ -675,7 +675,7 @@ window.onload = function() {
         $.ajax({
           async: false,
           type: "GET" ,
-          url: "getpublishers.php",
+          url: "php_db/getpublishers.php",
           success: function(data) {
             var results = JSON.parse(data);
             for (var i = 0; i < results.length; i++) {
@@ -712,7 +712,7 @@ window.onload = function() {
         $.ajax({
           async: false,
           type: "GET" ,
-          url: "getpublishers.php",
+          url: "php_db/getpublishers.php",
           success: function(data) {
             correct = true;
             var results = JSON.parse(data);
@@ -811,7 +811,7 @@ window.onload = function() {
 
       //If everything is correct, calling the php page to add the publisher
       if(totalResult == 4){
-        $.post("formaddpublisher.php",
+        $.post("php_db/formaddpublisher.php",
         {
           name: document.getElementById("nameform").value,
           address: document.getElementById("addressform").value,
@@ -848,7 +848,7 @@ function deleteBookLibrary(ISBN){
     document.getElementById("confirmDelete").addEventListener("click", function(){
       document.getElementById("advicedelete").classList.add("w3-hide");
       //calling the php page to delete the book from the library
-      $.post("deletelibrary.php",
+      $.post("php_db/deletelibrary.php",
       {
         ISBN: ISBN,
         user: finalUser
@@ -874,7 +874,7 @@ function deleteUser(nick){
   document.getElementById("confirmDelete").addEventListener("click", function(){
     document.getElementById("advicedelete").classList.add("w3-hide");
     //calling the php page to delete the user
-    $.post("deleteuser.php",
+    $.post("php_db/deleteuser.php",
     {
       nick: nick
     },
@@ -899,7 +899,7 @@ function updateUser(nick){
   document.getElementById("confirmUpdate").addEventListener("click", function(){
     document.getElementById("adviceupdate").classList.add("w3-hide");
     //calling the php page to update the data
-    $.post("updateuser.php",
+    $.post("php_db/updateuser.php",
     {
       nick: nick,
       name: document.getElementById("name_"+nick).value,
@@ -928,11 +928,12 @@ function deleteBook(ISBN){
   document.getElementById("confirmDelete").addEventListener("click", function(){
     document.getElementById("advicedelete").classList.add("w3-hide");
     //calling the php page to delete the book
-    $.post("deletebook.php",
+    $.post("php_db/deletebook.php",
     {
       ISBN: ISBN
     },
     function(data, status){
+      console.log(data);
       if(data == "1" && status == "success"){
         //Refresh the page to show the results
         location.reload();
@@ -953,7 +954,7 @@ function updateBook(ISBN){
   //calling the php page to update the data
   document.getElementById("confirmUpdate").addEventListener("click", function(){
     document.getElementById("adviceupdate").classList.add("w3-hide");
-    $.post("updatebook.php",
+    $.post("php_db/updatebook.php",
     {
       ISBN: ISBN,
       name: document.getElementById("name_"+ISBN).value,
@@ -980,7 +981,7 @@ function deleteAuthor(id){
   document.getElementById("confirmDelete").addEventListener("click", function(){
     document.getElementById("advicedelete").classList.add("w3-hide");
     //calling the php page to delete the book
-    $.post("deleteauthor.php",
+    $.post("php_db/deleteauthor.php",
     {
       id: id
     },
@@ -1011,7 +1012,7 @@ function updateAuthor(id){
   document.getElementById("confirmUpdate").addEventListener("click", function(){
     document.getElementById("adviceupdate").classList.add("w3-hide");
     //calling the php page to update the author data
-    $.post("updateauthor.php",
+    $.post("php_db/updateauthor.php",
     {
       id: id,
       name: document.getElementById("name_"+id).value,
@@ -1039,7 +1040,7 @@ function deletePublisher(id){
   document.getElementById("confirmDelete").addEventListener("click", function(){
     document.getElementById("advicedelete").classList.add("w3-hide");
     //calling the php page to delete the book
-    $.post("deletepublisher.php",
+    $.post("php_db/deletepublisher.php",
     {
       id: id
     },
@@ -1070,7 +1071,7 @@ function updatePublisher(id){
   document.getElementById("confirmUpdate").addEventListener("click", function(){
     document.getElementById("adviceupdate").classList.add("w3-hide");
     //calling the php page to update the publisher data
-    $.post("updatepublisher.php",
+    $.post("php_db/updatepublisher.php",
     {
       id: id,
       name: document.getElementById("name_"+id).value,

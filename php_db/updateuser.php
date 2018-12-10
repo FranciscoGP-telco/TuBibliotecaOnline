@@ -1,5 +1,5 @@
 <?php
-  require_once('php_includers/db_connection.php');
+  require_once('../php_includers/db_connection.php');
   $nick = $_POST["nick"];
   $name = $_POST["name"];
   $subname = $_POST["subname"];

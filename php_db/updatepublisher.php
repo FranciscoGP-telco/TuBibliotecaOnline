@@ -1,5 +1,5 @@
 <?php
-  require_once('php_includers/db_connection.php');
+  require_once('../php_includers/db_connection.php');
   $id = $_POST["id"];
   $name = $_POST["name"];
   $address = $_POST["address"];

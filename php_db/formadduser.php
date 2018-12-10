@@ -1,5 +1,5 @@
 <?php
-  require_once('php_includers/db_connection.php');
+  require_once('../php_includers/db_connection.php');
   $users = DB::listUsers();
   $totalUsers = count($users);
   $nick = strtolower($_POST["nick"]);

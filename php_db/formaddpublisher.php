@@ -1,5 +1,5 @@
 <?php
-  require_once('php_includers/db_connection.php');
+  require_once('../php_includers/db_connection.php');
   $publishers = DB::getPublishers();
   $totalPublishers = count($publishers);
   $name = strtolower($_POST["name"]);
