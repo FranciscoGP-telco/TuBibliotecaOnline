@@ -1,7 +1,5 @@
 <?php
-  require_once('php_includers/db_connection.php');
-  $publishers = DB::getPublishers();
-
+//Page with the form to add a publisher
   print_r('<div class="addBook tbo-cream w3-padding-large" id="divpublisherform">
         <h1 class="titles">Añadir editorial</h1>
         
@@ -13,12 +11,11 @@
         <input class="w3-input w3-border" name="emailform" id="emailform" type="email"></p><span class="w3-tag w3-padding w3-small w3-red w3-center w3-hide" id="emailerror"></span>
         <p><label for="phoneform">Teléfono:</label>
         <input class="w3-input w3-border" name="phoneform" id="phoneform" type="text"></p><span class="w3-tag w3-padding w3-small w3-red w3-center w3-hide" id="phoneerror"></span>
-        ');
-        print_r('<div id="addpublishercorrect" class="w3-panel tbo-mint w3-display-container w3-hide">
+        <div id="addpublishercorrect" class="w3-panel tbo-mint w3-display-container w3-hide">
         <h2>¡Editorial creada correctamente!</h2>
-        </div>');
-        print_r('<div id="addpublishererror" class="w3-panel tbo-dark w3-display-container w3-hide">
+        </div>
+        <div id="addpublishererror" class="w3-panel tbo-dark w3-display-container w3-hide">
         <h2>La editorial ya existe</h2>
-        </div>');
-      print_r('</br><button class="w3-button w3-round tbo-mint w3-block" id="addnewpublisher">Crear editorial</button>');
+        </div>
+      </br><button class="w3-button w3-round tbo-mint w3-block" id="addnewpublisher">Crear editorial</button>');
 ?>

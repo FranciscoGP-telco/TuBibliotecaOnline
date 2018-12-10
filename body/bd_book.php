@@ -1,15 +1,19 @@
 <?php
+  //Page to show the book info
   require_once('php_includers/db_connection.php');
   $book = DB::getBook($_GET["ISBN"]);
+  //Getting the route for the img
   $frontRute = "img/".$_GET["ISBN"].".png";
   $exitsFront = false;
+  //If nos exists, variable to charge later the default img
   if (file_exists($frontRute)){
     $exitsFront = true;
   }
+  //default value to check if a book is in the library of the user
   $bookInLibrary = 2;
+  //Checking if the user is logged with the cookies
   if(isset($_COOKIE['login'])){
-      $cookieSplit = explode(",", $_COOKIE["login"]);
-      $user = $cookieSplit[0];
+      $user = $_COOKIE["login"];
       $bookInLibrary = DB::bookInLibrary($user, $_GET["ISBN"]);
   }
  
@@ -19,11 +23,12 @@
         <div class="w3-half w3-container">
           <div class="bookContainer">
             <?php
-            if($exitsFront){
-              print_r('<img src="img/'.$book["ISBN"].'.png" alt="'.$book["TITLE"].'" class="bookCoverSmall" id="'.$book["ISBN"].'">');
-            } else {
-              print_r('<div class="bookCoverSmall w3-container w3-center"><a class="noUnder" href="addfront.php?ISBN='.$book["ISBN"].'"><p>No se ha añadido ninguna portada. Haz click para añadirla</p></a></div>');
-            }
+              //Charging the default img if we dont have the book front
+              if($exitsFront){
+                print_r('<img src="img/'.$book["ISBN"].'.png" alt="'.$book["TITLE"].'" class="bookCoverSmall" id="'.$book["ISBN"].'">');
+              } else {
+                print_r('<div class="bookCoverSmall w3-container w3-center"><a class="noUnder" href="addfront.php?ISBN='.$book["ISBN"].'"><p>No se ha añadido ninguna portada. Haz click para añadirla</p></a></div>');
+              }
             ?>
             <p><?php print_r($book["TITLE"]) ?></p>
             <p>ISBN: <?php print_r($book["ISBN"]) ?></p>

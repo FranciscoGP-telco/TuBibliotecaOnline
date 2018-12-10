@@ -1,5 +1,5 @@
 <?php
-  require_once('php_includers/db_connection.php');
+  //Page with the form to registrer a user
   print_r('<div class="addBook tbo-cream w3-padding-large" id="divuserform">
         <h1 class="titles">¡Bienvenido a TuBibliotecaOnline!</h1>
         <p>Con TuBibliotecaOnline podras llevar al día todos los libros que posees, comprobar los datos de tus editoriales 

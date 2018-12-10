@@ -10,7 +10,7 @@
   <div id="footer-size"></div>
   <div class="tbo-cream footerContainer">
     <div class="w3-center">
-      <a href="#" class="tbo-hover-grey footer" >Mapa de sitio</a> ·
+      <a href="webmap.php" class="tbo-hover-grey footer" >Mapa de sitio</a> ·
       <a href="cookies.php" class="tbo-hover-grey footer" >Política de cookies</a>
     </div>
   </div>

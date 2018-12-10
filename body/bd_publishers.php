@@ -20,6 +20,6 @@
 
       </table>
     <div>
-    <p class="normalTextCenter">¿Aun no has encontrado la editorial que buscas? <a href="addpublishers.php">¡Añadela aquí!</a></p>
+    <p class="normalTextCenter">¿Aun no has encontrado la editorial que buscas? <a href="addpublisher.php">¡Añadela aquí!</a></p>
 
     </div>

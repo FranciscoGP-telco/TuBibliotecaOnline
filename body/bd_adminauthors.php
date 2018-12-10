@@ -1,6 +1,8 @@
 <?php
   require_once('php_includers/db_connection.php');
-  $books = DB::listAuthors();
+  //Getting all the authors
+  $authors = DB::listAuthors();
+  //Checking if the user is admin
   if($admin){
     print_r('
     <div class="advice w3-hide" id="advicedelete">
@@ -29,13 +31,14 @@
               <th>Actualizar</th>
               <th>Borrar</th>
             </tr>");
-            for ($i = 0; $i < count($books); $i++){
+            //Showing all the authors and creating the form to change the data. Also we add two bottons with functions to update and delete
+            for ($i = 0; $i < count($authors); $i++){
             print_r("<tr>
-              <td>".$books[$i]['ID_AUTHOR']."</td>
-              <td><input class='w3-input w3-border' name='name_".$books[$i]['ID_AUTHOR']."' id='name_".$books[$i]['ID_AUTHOR']."' type='text' value='".$books[$i]['NAME']."'></td>
-              <td><input class='w3-input w3-border' name='date_".$books[$i]['ID_AUTHOR']."' id='date_".$books[$i]['ID_AUTHOR']."' type='date' value='".$books[$i]['YEAROFBIRTH']."'></td>
-              <td><button class='w3-button w3-tiny w3-round tbo-mint w3-block' onclick='updateAuthor(\"".$books[$i]['ID_AUTHOR']."\")'>Actualizar</button></td>
-              <td><button class='w3-button w3-tiny w3-round tbo-mint w3-block' onclick='deleteAuthor(\"".$books[$i]['ID_AUTHOR']."\")'>X</button></td>
+              <td>".$authors[$i]['ID_AUTHOR']."</td>
+              <td><input class='w3-input w3-border' name='name_".$authors[$i]['ID_AUTHOR']."' id='name_".$authors[$i]['ID_AUTHOR']."' type='text' value='".$authors[$i]['NAME']."'></td>
+              <td><input class='w3-input w3-border' name='date_".$authors[$i]['ID_AUTHOR']."' id='date_".$authors[$i]['ID_AUTHOR']."' type='date' value='".$authors[$i]['YEAROFBIRTH']."'></td>
+              <td><button class='w3-button w3-tiny w3-round tbo-mint w3-block' onclick='updateAuthor(\"".$authors[$i]['ID_AUTHOR']."\")'>Actualizar</button></td>
+              <td><button class='w3-button w3-tiny w3-round tbo-mint w3-block' onclick='deleteAuthor(\"".$authors[$i]['ID_AUTHOR']."\")'>X</button></td>
             </tr>");
             }
             print_r("</table>

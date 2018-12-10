@@ -87,7 +87,10 @@ body {
 .bookContainer{
   margin: 15px;
 }
-
+.titleMap{
+  font-family: "Abel";
+  font-size: 22px;
+}
 .tbo-dark {
   background-color: #373331;
   color:#fff;
@@ -104,7 +107,10 @@ body {
   background-color: #e8eaa1;
   color:#000;
 }
-
+.tbo-cream {
+  background-color: #e8eaa1;
+  color:#000;
+}
 .tbo-hover-dark:hover {
   background-color:#373331!important;
   color:#fff!important;

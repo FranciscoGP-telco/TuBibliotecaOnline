@@ -1,5 +1,5 @@
 <?php
-  require_once('php_includers/db_connection.php');
+  //Page with the form for the first use
   print_r('<div class="addBook tbo-cream w3-padding-large" id="divuserform">
         <h1 class="titles">¡Bienvenido a TuBibliotecaOnline!</h1>
         <p>Para empezar a usar la página web debes crear un primer usuario de administración</p>

@@ -1,4 +1,5 @@
 <?php
+  //Page to show al the admin options
   print_r('<div class="addBook tbo-cream w3-padding-large">
       <h1 class="title">Página de administración - ¡Area restringida!</h1>
         <p>Desde aqui podras realizar labores de administrador, como borrar datos de la base de datos,

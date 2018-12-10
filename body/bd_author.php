@@ -1,4 +1,5 @@
 <?php
+  //Page to charge the author page
   require_once('php_includers/db_connection.php');
   $author = DB::getAuthorsById($_GET["id"]);
 ?>

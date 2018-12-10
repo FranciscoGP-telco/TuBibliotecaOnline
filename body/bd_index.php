@@ -1,12 +1,13 @@
 <?php
   require_once('php_includers/db_connection.php');
   $popularBooks = DB::getPopularBooks();
+  //Charging the first img of the books
   if(isset($popularBooks[0])){
     $imgroute = "img/".$popularBooks[0]['ISBN'].".png";
   }
+  //Checking if the user is logged
   if(isset($_COOKIE["login"])){
-    $cookieSplit = explode(",", $_COOKIE["login"]);
-    $USER = $cookieSplit[0];
+    $USER = $_COOKIE["login"];
     $recientBooks = DB::getRecientBooks($USER);
     
     print_r('
@@ -17,6 +18,7 @@
     <div class="w3-row">
       <div class="w3-container w3-quarter">
       ');
+      //Charging the image by default if the book dont have front. Repeat for the rests of books
        if (isset($recientBooks[0]['ISBN'])){
         if(!file_exists("img/".$recientBooks[0]['ISBN'].".png")){
           $imgroute = "img/without.png";

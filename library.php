@@ -1,4 +1,6 @@
 <?php
+//Page to call the header, footer and body
+
 $PageTitle =  "Biblioteca de usuario";
 include_once('php_includers/header.php');
 

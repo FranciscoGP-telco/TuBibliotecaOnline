@@ -1,5 +1,6 @@
 <?php
   require_once('php_includers/db_connection.php');
+  //cheking if we have the get info
   if(isset($_GET["ISBN"])){
     $book = DB::getBook($_GET["ISBN"]);
     print_r('<div class="addBook tbo-cream w3-padding-large">

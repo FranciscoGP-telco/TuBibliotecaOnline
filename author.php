@@ -1,4 +1,5 @@
 <?php
+//Page to call the header, footer and body
 $PageTitle =  "Página de autor";
 include_once('php_includers/header.php');
 

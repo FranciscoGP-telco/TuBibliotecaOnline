@@ -1,4 +1,5 @@
 <?php
+  //Page with the cookies info
   print_r('<div class="addBook tbo-cream w3-padding-large">
   <h1>Politica de cookies</h1>
   <p>Esta web hace uso de cookies propias permanentes. Las cookies son pequeños archivos que se almacenan en tu ordenador. Estas mismas almacenan los datos del usuario para poder

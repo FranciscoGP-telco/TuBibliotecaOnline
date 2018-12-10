@@ -1,13 +1,15 @@
 <?php
+  //page with the library of the user
   require_once('php_includers/db_connection.php');
+  //Checking if the user is logged. If not, charge and advice to login
   if(isset($_COOKIE["login"])){
-    $cookieSplit = explode(",", $_COOKIE["login"]);
-    $USER = $cookieSplit[0];
+    $USER = $_COOKIE["login"];
     $recientBooks = DB::getRecientBooks($USER);
     $library = DB::getUserLibrary($USER);
     if (isset($recientBooks[0])){
       $imgroute = "img/".$recientBooks[0]['ISBN'].".png";
     }
+    //div with the advice to confirm delete a book from the library
     print_r('<div class="advice w3-hide" id="advicedelete">
         <p>¿Deseas borrar el libro de tu librería?</p>
         <button class="w3-button w3-tiny w3-round tbo-mint w3-block" id="confirmDelete">Sí</button></br>
@@ -20,6 +22,7 @@
   <div class="w3-container w3-section">
     <div class="w3-row">
       <div class="w3-container w3-quarter">');
+      //Charging the image by default if the book dont have front. Repeat for the rests of books
       if (isset($recientBooks[0]['ISBN'])){
         if(!file_exists("img/".$recientBooks[0]['ISBN'].".png")){
           $imgroute = "img/without.png";
@@ -75,6 +78,7 @@
     <div class="addBook tbo-cream w3-padding-large">
       <h1 class="titles">Tú biblioteca completa</h1>
       ');
+        //If we have titles, charge the book table
         if(isset($library[0]["TITLE"])){
           print_r("<table class='w3-table w3-bordered  w3-hoverable
           '>

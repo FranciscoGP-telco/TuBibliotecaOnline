@@ -1,6 +1,8 @@
 <?php
   require_once('php_includers/db_connection.php');
+  //Getting all the users
   $users = DB::listUsers();
+  //Checking if the user is admin
   if($admin){
     print_r('
     <div class="advice w3-hide" id="advicedelete">
@@ -26,6 +28,7 @@
               <th>Actualizar</th>
               <th>Borrar</th>
             </tr>");
+            //Showing all the users and creating the form to change the data. Also we add two bottons with functions to update and delete
             for ($i = 0; $i < count($users); $i++){
             print_r("<tr>
               <td>".$users[$i]['NICK']."</td>

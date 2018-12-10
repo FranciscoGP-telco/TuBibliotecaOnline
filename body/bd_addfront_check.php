@@ -1,5 +1,6 @@
 <?php
 print_r('<div class="addBook tbo-cream w3-padding-large">');
+    //Checkin if we have the post info
     if(isset($_POST["ISBN"])){
         $ISBN = $_POST["ISBN"];
         //Comprobations to upload the front

@@ -1,4 +1,5 @@
 <?php
+  //Page to show publisher info
   require_once('php_includers/db_connection.php');
   $publisher = DB::getPublisherById($_GET["id"]);
 ?>
@@ -19,6 +20,7 @@
         </div>
       </div>
     </div>
+    <!--Scripts to charge the map in the previous div-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC211PskvPGvdclmu_mOafZ8zW58ijr7xw&callback=initMap"
           async defer></script>
         <script src=js/maps.js></script>

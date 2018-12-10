@@ -1,4 +1,5 @@
 <?php
+//Page to search authors. All the results will be charge by javascript
   require_once('php_includers/db_connection.php');
 ?>
 
