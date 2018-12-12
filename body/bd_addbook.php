@@ -43,7 +43,7 @@
     print_r('<div id="addbookerror" class="w3-panel tbo-dark w3-display-container w3-hide">
     <h2>El libro ya existe</h2>
     </div>');
-    print_r('<br/><button class="w3-button w3-round tbo-mint w3-block" id="addnewbook">Añadir</button>');
+    print_r('<br/><button class="w3-button w3-round tbo-mint w3-block" id="addBook">Añadir</button>');
     print_r('</div>');
   }
 ?>

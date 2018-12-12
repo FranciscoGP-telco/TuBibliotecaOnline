@@ -28,7 +28,7 @@
           print_r ("<a href=\"book.php?ISBN=".$recientBooks[0]['ISBN']."\" class=\"noUnder\"><img src=\"".$imgroute."\" alt=\"".$recientBooks[0]['TITLE']."\" class=\"bookCoverSmall\" id=\"recient".$recientBooks[0]['ISBN']."\">");
           print_r ("<p>".$recientBooks[0]["TITLE"]."</p></a>");
         } else {
-          print_r ("<p>¡No has añadido aún ningún book!</p>");
+          print_r ("<p>¡No has añadido aún ningún libro!</p>");
         }
       print_r('
       </div>

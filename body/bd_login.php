@@ -15,7 +15,7 @@
         setcookie("pass", md5($_POST["password"]));
         print_r('Usuario ya logueado. <a href="index.php">volver al inicio</a>');
       } else {
-        print_r("Login incorrecto.");
+        print_r("Login incorrecto. Vuelve a intentarlo pulsando <a href='login.php'>aquí</a>");
       }
     } else {
       print_r('<div class="addBook tbo-cream w3-padding-large">

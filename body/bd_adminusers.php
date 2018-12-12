@@ -18,7 +18,8 @@
         <div class="admin tbo-cream w3-padding-large">
           <h1 class="titles">Administración de usuarios</h1>
           ');
-            print_r("<table class='w3-table w3-bordered w3-hoverable'>
+            print_r("<div class='w3-responsive'>
+            <table class='w3-table w3-bordered w3-hoverable w3-table-all'>
             <tr>
               <th>Nick</th>
               <th>Nombre</th>
@@ -58,6 +59,7 @@
             </tr>");
             }
             print_r("</table>
+            </div>
         </div>");
   } else {
     print_r('<div class="admin tbo-cream w3-padding-large">

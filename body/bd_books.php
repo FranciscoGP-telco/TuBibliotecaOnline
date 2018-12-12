@@ -21,6 +21,6 @@
 
       </table>
     <div>
-    <p class="normalTextCenter">¿Aun no has encontrado el libro que buscas? <a href="addbook.php">¡Añadelo aquí!</a></p>
+    <p class="normalTextCenter">¿Aun no has encontrado el libro que buscas? <a href="addbooks.php">¡Añadelo aquí!</a></p>
 
     </div>

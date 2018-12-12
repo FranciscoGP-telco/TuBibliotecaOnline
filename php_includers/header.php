@@ -46,11 +46,11 @@
         <!--Button to charge the menu-->
         <a href="#" class="w3-bar-item w3-button w3-hover-gray" id="menuButton">☰</a>
         <div id ="toNarrow">
-          <a href="index.php" class="w3-bar-item w3-button w3-hover-gray">tuBibliotecaOnline</a>
-          <a href="library.php" class="w3-bar-item w3-button w3-hover-gray">Tu biblioteca</a>
-          <a href="books.php" class="w3-bar-item w3-button w3-hover-gray">Libros</a>
-          <a href="authors.php" class="w3-bar-item w3-button w3-hover-gray">Autores</a>
-          <a href="publishers.php" class="w3-bar-item w3-button w3-hover-gray">Editoriales</a>
+          <a href="index.php" class="w3-bar-item w3-button tbo-hover-cream">tuBibliotecaOnline</a>
+          <a href="library.php" class="w3-bar-item w3-button tbo-hover-cream">Tu biblioteca</a>
+          <a href="books.php" class="w3-bar-item w3-button tbo-hover-cream">Libros</a>
+          <a href="authors.php" class="w3-bar-item w3-button tbo-hover-cream">Autores</a>
+          <a href="publishers.php" class="w3-bar-item w3-button tbo-hover-cream">Editoriales</a>
           <?php 
             if($admin){
               print_r('<a href="admin.php" class="w3-bar-item w3-right w3-button w3-hover-gray">Administración</a>');
@@ -69,6 +69,10 @@
       if($admin){
         print_r('
         <a href="index.php" class="w3-bar-item w3-button tbo-hover-cream">Inicio</a>
+        <a href="library.php" class="w3-bar-item w3-button tbo-hover-cream">Tu biblioteca</a>
+        <a href="books.php" class="w3-bar-item w3-button tbo-hover-cream">Libros</a>
+        <a href="authors.php" class="w3-bar-item w3-button tbo-hover-cream">Autores</a>
+        <a href="publishers.php" class="w3-bar-item w3-button tbo-hover-cream">Editoriales</a>
         <a href="adminusers.php" class="w3-bar-item w3-button tbo-hover-cream">Administrar usuarios</a>
         <a href="adminbks.php" class="w3-bar-item w3-button tbo-hover-cream">Administrar libros</a>
         <a href="adminathrs.php" class="w3-bar-item w3-button tbo-hover-cream">Administrar autores</a>

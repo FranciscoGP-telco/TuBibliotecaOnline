@@ -50,7 +50,7 @@ window.onload = function() {
   //end of the functions for the page behaviour
 
   //Script only avaliable in the page "books". used to search books
-  if(window.location.href.indexOf("books") > 0) {
+  if(window.location.href.indexOf("/books.php") > 0) {
     document.getElementById("searchBooks").addEventListener("click", function(){
       var bookTable = document.getElementById("searchBooksTable"),
           bookTableSize = 0;
@@ -81,7 +81,7 @@ window.onload = function() {
   }//End of the scripts in page "books"
 
   //Script only avaliable in the page "publishers". Use to the search of publishers
-  if(window.location.href.indexOf("publishers") > 0) {
+  if(window.location.href.indexOf("/publishers.php") > 0) {
     document.getElementById("buttonsearchpublishers").addEventListener("click", function(){
       var publisherTable = document.getElementById("publisherTable"),
           publisherTableSize = 0;
@@ -106,8 +106,6 @@ window.onload = function() {
             for (var i = 0; i < results.length; i++) {
               row = publisherTable.insertRow();
               row.insertCell(0).innerHTML = "<a class= 'normalTextCenter' href='publisher.php?id="+results[i].ID_PUBLISHER+"'>"+results[i].NAME+"<a/>";
-              row.insertCell(1).innerHTML = "<a>"+results[i].PHONE+"<a/>";
-              row.insertCell(2).innerHTML = "<a href='mailto:"+results[i].EMAIL+"'>"+results[i].EMAIL+"<a/>";
             }
         }
       });
@@ -115,7 +113,7 @@ window.onload = function() {
   }//End of the scripts in page "publishers"
 
   //Script only avaliable in the page "authors". Use to the search of authors
-  if(window.location.href.indexOf("authors") > 0) {
+  if(window.location.href.indexOf("/authors.php") > 0) {
     document.getElementById("authorsearchbutton").addEventListener("click", function(){
       var authorTable = document.getElementById("authorsearchtable"),
           authorTableSize = 0;
@@ -147,7 +145,7 @@ window.onload = function() {
   }//End of the scripts in page "authors"
 
   //Scripts only avaliables in page "book". Use to add books to the library in the book page
-  if(window.location.href.indexOf("book.php") > 0){
+  if(window.location.href.indexOf("/book.php") > 0){
     document.getElementById("addBook").addEventListener("click", function(){
       //Checking the actual user from the cookies
       var finalUser = Cookies.get('login'),
@@ -170,7 +168,7 @@ window.onload = function() {
 
 
   //Scripts only avaliables in the page checkin and firstuser
-  if(window.location.href.indexOf("checkin") > 0 || window.location.href.indexOf("firstuser") > 0){
+  if(window.location.href.indexOf("/checkin.php") > 0 || window.location.href.indexOf("/firstuser.php") > 0){
     var userType = "";
     //Depends of the page, the user will be an admin or a normal user
     if (window.location.href.indexOf("firstuser") > 0){
@@ -399,7 +397,7 @@ window.onload = function() {
   }//End of Scripts in the page checkin and firstuser
 
   //Scripts only avaliables in the page addbook
-  if(window.location.href.indexOf("addbook") > 0){
+  if(window.location.href.indexOf("/addbooks.php") > 0){
     
     //Function to check if the ISBN is correct
     function checkISBN(ISBN) {
@@ -493,7 +491,7 @@ window.onload = function() {
     //end of blur events
 
     //Click event to add the new book
-    document.getElementById("addnewbook").addEventListener("click", function(){
+    document.getElementById("addBook").addEventListener("click", function(){
       //array to store all the results
       var arrayResults = [],
           totalResult = 0;
@@ -532,7 +530,7 @@ window.onload = function() {
   }//End of scripts in page addbook
 
   //Scripts only avaliables in the page addauthor
-  if(window.location.href.indexOf("addauthor") > 0){
+  if(window.location.href.indexOf("/addauthor.php") > 0){
         
     //Fuction to check if the author is correct
     function checkAuthor(author) {
@@ -663,7 +661,7 @@ window.onload = function() {
   }//End of scripts on page addauthor
 
   //Scripts only avaliables in the page addpublisher
-  if(window.location.href.indexOf("addpublisher") > 0){
+  if(window.location.href.indexOf("/addpublisher.php") > 0){
     //Function to check the publisher
     function checkPublisher(publisher) {
       var correct = false;

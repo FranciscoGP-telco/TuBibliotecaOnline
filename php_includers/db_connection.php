@@ -10,9 +10,9 @@
         //Trying the connection and executing the query
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         if (isset($connection)) $result = $connection->query($sql);
-        //Catching the errors
+        //Catching all the error that can come from the queries
       } catch (PDOException $error) {
-        echo $error->getMessage();
+        print_r("Ha ocurrido el siguiente error: ".$error->getMessage()." Por favor, ponte en contacto con el administrado de la aplicación: ");
       }
       //closing the connection to the DB
       $connection = null; 
@@ -21,7 +21,7 @@
     
     //Function to geet the book with a concrete ISBN
     public static function getBook($ISBN) {
-      $sql = "SELECT B.ISBN, B.NAME AS TITLE, B.GENRE, B.PLOT, A.NAME AS AUTHOR, P.NAME AS PUBLISHER\n"
+      $sql = "SELECT B.ISBN, B.NAME AS TITLE, B.GENRE, B.PLOT, A.NAME AS AUTHOR, P.NAME AS PUBLISHER, P.ID_PUBLISHER AS ID_PUBLISHER\n"
       . "FROM BOOKS B, AUTHOR A, PUBLISHERS P \n"
       . "WHERE B.ID_PUBLISHER = P.ID_PUBLISHER AND A.ID_AUTHOR = B.ID_AUTHOR AND ISBN='".$ISBN."'";
       $result = self::execQuery ($sql);
@@ -62,7 +62,7 @@
 
     //Function to get the library of a user
     public static function getUserLibrary($USER) {
-      $sql = "SELECT L.ISBN AS ISBN, B.NAME AS TITLE, B.GENRE AS GENRE, P.NAME AS PUBLISHER  \n"
+      $sql = "SELECT L.ISBN AS ISBN, B.NAME AS TITLE, B.GENRE AS GENRE, P.NAME AS PUBLISHER, P.ID_PUBLISHER AS ID_PUBLISHER  \n"
       . "FROM LIBRARY L, BOOKS B, PUBLISHERS P \n"
       . "WHERE L.ISBN = B.ISBN AND B.ID_PUBLISHER = P.ID_PUBLISHER AND L.NICK = '".$USER."'\n"
       . "ORDER BY TITLE ASC";

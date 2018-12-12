@@ -94,7 +94,7 @@
             <td>".$library[$i]['ISBN']."</td>
             <td><a href='book.php?ISBN=".$library[$i]['ISBN']."'>".$library[$i]['TITLE']."</a></td>
             <td>".$library[$i]['GENRE']."</td>
-            <td><a href='publisher.php?ISBN=".$library[$i]['PUBLISHER']."'>".$library[$i]['PUBLISHER']."</a></td>
+            <td><a href='publisher.php?id=".$library[$i]['ID_PUBLISHER']."'>".$library[$i]['PUBLISHER']."</a></td>
             <td><button class='w3-button w3-tiny w3-round tbo-mint w3-block' onclick='deleteBookLibrary(".$library[$i]['ISBN'].")'>X</button></td>
           </tr>");
           }
