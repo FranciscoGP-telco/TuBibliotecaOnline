@@ -57,7 +57,13 @@
             }
           ?>
         </div>
-        <a href="logout.php" class="w3-bar-item w3-button w3-right w3-hover-gray" id="userButton">Desconectar</a>
+        <?php
+          if(isset($_COOKIE["login"])){
+            print_r('<a href="logout.php" class="w3-bar-item w3-button w3-right w3-hover-gray" id="userButton">Desconectar</a>');
+          } else {
+            print_r('<a href="login.php" class="w3-bar-item w3-button w3-right w3-hover-gray" id="userButton">Login</a>');
+          }
+        ?>
       </div>
     </div>
     <div id="header-size"></div>

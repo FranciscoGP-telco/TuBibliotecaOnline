@@ -1,5 +1,6 @@
 <?php
-//Page with the form to add a publisher
+  if(isset($_COOKIE["login"])){
+  //Page with the form to add a publisher
   print_r('<div class="addBook tbo-cream w3-padding-large" id="divpublisherform">
         <h1 class="titles">Añadir editorial</h1>
         
@@ -18,4 +19,10 @@
         <h2>La editorial ya existe</h2>
         </div>
       </br><button class="w3-button w3-round tbo-mint w3-block" id="addnewpublisher">Crear editorial</button>');
+  } else {
+    print_r('    <div class="addBook tbo-cream w3-padding-large">
+    <p> Debes loguearte para poder añadir una editorial. Hazlo <a href="login.php">aquí</a></p>
+    </div>
+    ');
+  }
 ?>

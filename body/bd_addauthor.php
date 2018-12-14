@@ -1,4 +1,5 @@
 <?php
+  if(isset($_COOKIE["login"])){
   //Page with the form to add a author
   print_r('<div class="addBook tbo-cream w3-padding-large" id="divauthorform">
         <h1 class="titles">Añadir autor</h1>
@@ -15,4 +16,10 @@
         <h2>El autor ya existe</h2>
         </div>
         <br/><button class="w3-button w3-round tbo-mint w3-block" id="addnewauthor">Crear autor</button>');
+  } else {
+    print_r('    <div class="addBook tbo-cream w3-padding-large">
+    <p> Debes loguearte para poder añadir un autor. Hazlo <a href="login.php">aquí</a></p>
+    </div>
+    ');
+  }
 ?>

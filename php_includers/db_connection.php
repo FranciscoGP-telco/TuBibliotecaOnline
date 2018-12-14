@@ -171,7 +171,7 @@
 
     //Function to check if a book is in a library
     public static function bookInLibrary($nick, $ISBN) {
-      $sql = "SELECT COUNT(*) AS ONLIBRARY FROM `library` WHERE NICK='".$nick."' AND ISBN='".$ISBN."'";
+      $sql = "SELECT COUNT(*) AS ONLIBRARY FROM `LIBRARY` WHERE NICK='".$nick."' AND ISBN='".$ISBN."'";
       $result = self::execQuery ($sql);
       $row = null;
       //Due to the filter is the primaries keys, we only have one result. We use fetch
@@ -211,7 +211,7 @@
 
     //Function to count the users in the DB. Used to the first start of the page
     public static function numUsers(){
-      $sql = "SELECT COUNT(*) AS NUMUSERS FROM `users`";
+      $sql = "SELECT COUNT(*) AS NUMUSERS FROM `USERS`";
       $result = self::execQuery ($sql);
       $row = null;
       //Due to the filter is the primary key, we only have one result. We use fetch
