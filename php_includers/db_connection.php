@@ -4,7 +4,7 @@
     //Function only avaliable for the rest of the functions in the class 
     protected static function execQuery($sql) {
       //Conection with the MySQL
-      $connection = new PDO("mysql:host=localhost;dbname=id7548059_tubibliotecaonline;charset=utf8", "id7548059_francisco", "gp4649c2");
+      $connection = new PDO("mysql:host=localhost;dbname=id7548059_tubibliotecaonline;charset=utf8", "id7548059_francisco", "xxxxxxx");
       $result = null;
       try {
         //Trying the connection and executing the query
